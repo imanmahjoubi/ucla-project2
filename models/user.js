@@ -28,7 +28,10 @@ module.exports = function(sequelize, DataTypes) {
     });
     User.associate = function(models) {
         User.hasMany(models.User_Recommendation, {
-            onDelete: 'cascade'
+            onDelete: 'cascade',
+            foreignKey: {
+                allowNull: false
+            }
         });
     };
     return User;
