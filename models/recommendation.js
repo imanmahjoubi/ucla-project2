@@ -8,7 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     });
     Recommendation.associate = function(models) {
         Recommendation.hasMany(models.User_Recommendation, {
-            onDelete: 'cascade'
+            onDelete: 'cascade',
+            foreignKey: {
+                allowNull: false
+            }
         });
         Recommendation.hasMany(models.Article, {
             onDelete: 'cascade'
