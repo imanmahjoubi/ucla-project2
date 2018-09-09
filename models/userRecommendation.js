@@ -1,19 +1,19 @@
 module.exports = function(sequelize, DataTypes) {
-    var User_Recommendation = sequelize.define("User_Recommendation", {
+    var UserRecommendation = sequelize.define("UserRecommendation", {
         id: {type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true},
     });
-    User_Recommendation.associate = function(models) {
-        User_Recommendation.belongsTo(models.User, {
+    UserRecommendation.associate = function(models) {
+        UserRecommendation.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
-        User_Recommendation.belongsTo(models.Recommendation, {
+        UserRecommendation.belongsTo(models.Recommendation, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
 
-    return User_Recommendation
+    return UserRecommendation;
 };

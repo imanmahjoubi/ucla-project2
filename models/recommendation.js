@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
         max_score: {type: DataTypes.FLOAT, allowNull: false}
     });
     Recommendation.associate = function(models) {
-        Recommendation.hasMany(models.User_Recommendation, {
+        Recommendation.hasMany(models.UserRecommendation, {
             onDelete: 'cascade',
             foreignKey: {
                 allowNull: false

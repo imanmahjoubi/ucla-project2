@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         score_sleep: {type: DataTypes.FLOAT, allowNull: false}
     });
     User.associate = function(models) {
-        User.hasMany(models.User_Recommendation, {
+        User.hasMany(models.UserRecommendation, {
             onDelete: 'cascade',
             foreignKey: {
                 allowNull: false
