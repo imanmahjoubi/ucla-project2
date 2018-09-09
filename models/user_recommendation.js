@@ -4,12 +4,12 @@ module.exports = function(sequelize, DataTypes) {
     });
     User_Recommendation.associate = function(models) {
         User_Recommendation.belongsTo(models.User, {
-            foreigKey: {
+            foreignKey: {
                 allowNull: false
             }
         });
         User_Recommendation.belongsTo(models.Recommendation, {
-            foreigKey: {
+            foreignKey: {
                 allowNull: false
             }
         });
