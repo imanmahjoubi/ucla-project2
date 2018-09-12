@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Test user input</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Add a user</h2>
+        <form id="my-form">
+            <div class="form-group">
+                <label>username</label>
+                <input type="text" class="username form-control">
+            </div>
+            <div class="form-group">
+                <label>password</label>
+                <input type="text" class="password form-control">
+            </div>
+            <div class="form-group">
+                <label>first name</label>
+                <input type="text" class="first-name form-control">
+            </div>
+            <div class="form-group">
+                <label>last name</label>
+                <input type="text" class="last-name form-control">
+            </div>
+            <div class="form-group">
+                <label>age</label>
+                <input type="text" class="age form-control">
+            </div>
+            <div class="form-group">
+                <label>gender</label>
+                <input type="text" class="gender form-control">
+            </div>
+            <div class="form-group">
+                <label>weight</label>
+                <input type="text" class="weight form-control">
+            </div>
+            <div class="form-group">
+                <label>height</label>
+                <input type="text" class="height form-control">
+            </div>
+            <div class="form-group">
+                <label>body fat</label>
+                <input type="text" class="body-fat form-control">
+            </div>
+            <div class="form-group">
+                <label>Smoker</label>
+                <input type="text" class="smoker form-control">
+            </div>
+            <div class="form-group">
+                <label>Hours Workout per day</label>
+                <input type="text" class="workout form-control">
+            </div>
+            <div class="form-group">
+                <label>following a diet</label>
+                <input type="text" class="diet form-control">
+            </div>
+            <div class="form-group">
+                <label>hours sleep per night</label>
+                <input type="text" class="sleep form-control">
+            </div>
+            <div class="form-group">
+                <label>digestive problems</label>
+                <input type="text" class="digestion form-control">
+            </div>
+            <div class="form-group">
+                <label>drinks per week</label>
+                <input type="text" class="drinks form-control">
+            </div>
+            <div class="form-group">
+                <label>hours worked per week</label>
+                <input type="text" class="work form-control">
+            </div>
+            <div class="form-group">
+                <label>low energy</label>
+                <input type="text" class="energy form-control">
+            </div>
+            <div class="form-group">
+                <label>stress level</label>
+                <input type="text" class="stress form-control">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <br>
+        <br>
+        <h2>Add a user recommendation</h2>
+        <form id="user-rec">
+            <div class="form-group">
+                <label>Recommendation ID</label>
+                <input type="text" class="form-control rec-id">
+            </div>
+            <div class="form-group">
+                <label>User ID</label>
+                <input type="text" class="form-control user-id">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $('#my-form').on('submit', function(event) {
+            event.preventDefault();
+            var newUser = {
+                username: $('.username').val(),
+                password: $('.password').val(),
+                first_name: $('.first-name').val(),
+                last_name: $('.last-name').val(),
+                age: parseInt($('.age').val()),
+                gender: $('.gender').val(),
+                height: parseFloat($('.height').val()),
+                weight: parseFloat($('.weight').val()),
+                body_fat: parseFloat($('.body-fat').val()),
+                smoker: $('.smoker').val(),
+                workout_hours: parseFloat($('.workout').val()),
+                diet: $('.diet').val(),
+                sleep: parseFloat($('.sleep').val()),
+                digestion: $('.digestion').val(),
+                num_drinks: parseInt($('.drinks').val()),
+                work_hours: parseFloat($('.work').val()),
+                low_energy: $('.energy').val(),
+                stress_level: $('.stress').val(),
+                score_diet: 100,
+                score_habit: 100,
+                score_energy: 100
+            };
+
+            //calculate the scores for the three categories
+            //habit
+
+            if (newUser.num_drinks >= 21) {
+                newUser.score_habit -= 50;
+            } else if (newUser.num_drinks >= 14) {
+                newUser.score_habit -= 25;
+            } else if (newUser.num_drinks >= 7) {
+                newUser.score_habit -= 10;
+            }
+            if (newUser.smoker) {
+                newUser.score_habit -= 50;
+            }
+            var bmi = newUser.weight / Math.pow(newUser.height, 2);
+            if ( bmi > .25) {
+                newUser.score_habit -= 15;
+            }
+            if (newUser.stress_level >= 9) {
+                newUser.score_habit -= 15
+            } else if (newUser.stress_level >= 7) {
+                newUser.score_habit -= 5;
+            }
+            if (newUser.score_habit < 0) {
+                newUser.score_habit = 0;
+            }
+
+            //diet
+            if (bmi >= .35 && !newUser.diet) {
+                newUser.score_diet -= 45;
+            } else if (bmi >= .35 && newUser.diet) {
+                newUser.score_diet -= 35;
+            } else if (bmi > .25 && !newUser.diet) {
+                newUser.score_diet -= 25;
+            } else if (bmi > .25 && newUser.diet) {
+                newUser.score_diet -= 20;
+            }
+            if (newUser.digestion) {
+                newUser.score_diet -= 15;
+            }
+            if (newUser.stress_level >= 9) {
+                newUser.score_diet -= 15
+            } else if (newUser.stress_level >= 7) {
+                newUser.score_diet -= 10;
+            } else if (newUser.stress_level > 5) {
+                newUser.score_diet -= 5;
+            }
+            if (newUser.num_drinks >= 14) {
+                newUser.score_diet -= 15;
+            }
+
+            //energy
+
+            $.post('/api/users', newUser, function(result) {
+                console.log(result);
+            }).catch(function(error) {
+                console.log(error);
+            });
+        });
+
+        $('#user-rec').on('submit', function(event) {
+            event.preventDefault();
+            $.post('/api/userrecommendations', {
+                RecommendationId: $('.rec-id').val(),
+                UserId: $('.user-id').val()
+            }, function(result) {
+                console.log(result);
+            }).catch(function(error) {
+                console.log(error);
+            });
+        });
+        
+    </script>
+</body>
+</html>
