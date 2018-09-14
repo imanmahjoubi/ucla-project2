@@ -53,7 +53,7 @@
                 <input type="text" class="smoker form-control">
             </div>
             <div class="form-group">
-                <label>Hours Workout per day</label>
+                <label>Hours Workout per week</label>
                 <input type="text" class="workout form-control">
             </div>
             <div class="form-group">
@@ -86,6 +86,13 @@
             </div>
             <button type="submit">Submit</button>
         </form>
+        <br>
+        <div class="row">
+            <h2>Recommendations</h2>
+            <div id="recommendations" class="col-12">
+                <!-- where the recommendation output goes -->
+            </div>
+        </div>
         <br>
         <br>
         <h2>Add a user recommendation</h2>
@@ -123,65 +130,196 @@
                 work_hours: parseFloat($('.work').val()),
                 low_energy: $('.energy').val(),
                 stress_level: $('.stress').val(),
-                score_diet: 100,
-                score_habit: 100,
-                score_energy: 100
-            };
+                score_diet: 0,
+                score_habit: 0,
+                score_energy: 0
+            }
+      
+            var countHabit = 0;
+            var countEnergy = 0;
+            var countDiet = 0;
+            var bmi = newUser.weight / Math.pow(newUser.height, 2);
 
             //calculate the scores for the three categories
             //habit
-
             if (newUser.num_drinks >= 21) {
-                newUser.score_habit -= 50;
+                newUser.score_habit += 25;
             } else if (newUser.num_drinks >= 14) {
-                newUser.score_habit -= 25;
+                newUser.score_habit += 50;
             } else if (newUser.num_drinks >= 7) {
-                newUser.score_habit -= 10;
+                newUser.score_habit += 75;
+            } else if (newUser.num_drinks > 0) {
+                newUser.score_habit += 90;
+            } else{
+                newUser.score_habit += 100;
             }
+            countHabit++;
             if (newUser.smoker) {
-                newUser.score_habit -= 50;
+                newUser.score_habit += 35;
+            } else {
+                newUser.score_habit += 100
             }
-            var bmi = newUser.weight / Math.pow(newUser.height, 2);
-            if ( bmi > .25) {
-                newUser.score_habit -= 15;
+            countHabit++;
+            
+            if (bmi >= .35) {
+                newUser.score_habit += 50;
+            } else if (bmi > .25) {
+                newUser.score_habit += 75;
+            } else {
+                newUser.score_habit += 100;
             }
-            if (newUser.stress_level >= 9) {
-                newUser.score_habit -= 15
-            } else if (newUser.stress_level >= 7) {
-                newUser.score_habit -= 5;
+            countHabit++;
+            if (newUser.stress_level === 10) {
+                newUser.score_habit += 50;
+            } else if (newUser.stress_level >= 8) {
+                newUser.score_habit += 75;
+            } else if (newUser.stress_level >= 5) {
+                newUser.score_habit += 90;
+            } else {
+                newUser.score_habit += 100
             }
-            if (newUser.score_habit < 0) {
-                newUser.score_habit = 0;
+            countHabit++
+            if (newUser.workout_hours >= 14) {
+                newUser.score_habit += 100;
+            } else if (newUser.workout_hours >= 7) {
+                newUser.score_habit += 90;
+            } else if (newUser.workout_hours >= 5) {
+                newUser.score_habit += 80;
+            } else if (newUser.workout_hours >= 3.5) {
+                newUser.score_habit += 75;
+            } else if (newUser.workout_hours > 0) {
+                newUser.score_habit += 50;
+            } else {
+                newUser.score_habit += 25;
             }
-
+            countHabit++;
+            if (newUser.work_hours >= 80) {
+                newUser.score_habit += 75;
+            } else if (newUser.work_hours >= 60) {
+                newUser.score_habit += 85;
+            } else {
+                newUser.score_habit += 100;
+            }
+            countHabit++;
+            if (newUser.sleep >= 10) {
+                newUser.score_habit += 50;
+            } else if (newUser.sleep >= 9) {
+                newUser.score_habit += 75;
+            } else if (newUser.sleep >= 8) {
+                newUser.score_habit += 100;
+            } else if (newUser.sleep >= 7) {
+                newUser.score_habit += 90;
+            } else if (newUser.sleep >= 6) {
+                newUser.score_habit += 75;
+            } else {
+                newUser.score_habit += 50;
+            }
+            countHabit++;
+            //calculate average
+            newUser.score_habit = newUser.score_habit / countHabit;
+            console.log('score_habit:', newUser.score_habit);
             //diet
             if (bmi >= .35 && !newUser.diet) {
-                newUser.score_diet -= 45;
+                newUser.score_diet += 40;
             } else if (bmi >= .35 && newUser.diet) {
-                newUser.score_diet -= 35;
+                newUser.score_diet += 55;
             } else if (bmi > .25 && !newUser.diet) {
-                newUser.score_diet -= 25;
+                newUser.score_diet += 70;
             } else if (bmi > .25 && newUser.diet) {
-                newUser.score_diet -= 20;
+                newUser.score_diet += 80;
+            } else if (bmi < .25 && !newUser.diet) {
+                newUser.score_diet += 90;
+            } else {
+                newUser.score_diet += 100;
             }
+            countDiet++;
             if (newUser.digestion) {
-                newUser.score_diet -= 15;
+                newUser.score_diet += 75;
+            } else {
+                newUser.score_diet += 100;
             }
+            countDiet++;
             if (newUser.stress_level >= 9) {
-                newUser.score_diet -= 15
+                newUser.score_diet += 85
             } else if (newUser.stress_level >= 7) {
-                newUser.score_diet -= 10;
-            } else if (newUser.stress_level > 5) {
-                newUser.score_diet -= 5;
+                newUser.score_diet += 90;
+            } else {
+                newUser.score_diet += 100;
             }
-            if (newUser.num_drinks >= 14) {
-                newUser.score_diet -= 15;
+            countDiet++;
+            if (newUser.num_drinks >= 21) {
+                newUser.score_diet += 75;
             }
-
+            else if (newUser.num_drinks >= 14) {
+                newUser.score_diet += 85;
+            } else if (newUser.num_drinks >= 7) {
+                newUser.score_diet += 90;
+            } else {
+                newUser.score_diet += 100;
+            }
+            countDiet++;
+            //calculate the average and store it back into newUser.score_diet
+            newUser.score_diet = newUser.score_diet / countDiet;
+            console.log('score_diet', newUser.score_diet);
             //energy
+            if (newUser.low_energy) {
+                newUser.score_energy += 50;
+            } else {
+                newUser.score_energy += 100;
+            }
+            countEnergy++;
+            if (newUser.work_hours >= 100) {
+                newUser.score_energy += 30;
+            } else if (newUser.work_hours >= 80) {
+                newUser.score_energy += 50;
+            } else if (newUser.work_hours >= 60) {
+                newUser.score_energy += 75;
+            } else if (newUser.work_hours >= 50) {
+                newUser.score_energy += 85
+            } else {
+                newUser.score_energy += 95;
+            }
+            countEnergy++;
+            if (newUser.workout_hours >= 21) {
+                newUser.score_energy += 50;
+            } else if (newUser.workout_hours >= 14) {
+                newUser.score_energy += 75;
+            } else if (newUser.workout_hours >= 7) {
+                newUser.score_energy += 85;
+            } else if (newUser.workout_hours >= 3.5) {
+                newUser.score_energy += 75;
+            } else {
+                newUser.score_energy += 50;
+            }
+            countEnergy++;
+            if (newUser.sleep >= 10) {
+                newUser.score_energy += 50;
+            } else if (newUser.sleep >= 9) {
+                newUser.score_energy += 75;
+            } else if (newUser.sleep >= 8) {
+                newUser.score_energy += 100;
+            } else if (newUser.sleep >= 7) {
+                newUser.score_energy += 90;
+            } else if (newUser.sleep >= 6) {
+                newUser.score_energy += 75;
+            } else {
+                newUser.score_energy += 50;
+            }
+            countEnergy++;
+            if (newUser.num_drinks >= 21) {
+                newUser.score_energy += 50
+                countEnergy++;
+            } else if (newUser.num_drinks >= 14) {
+                newUser.score_energy += 75;
+                countEnergy++;
+            }
+            //calculate average score_energy
+            newUser.score_energy = newUser.score_energy / countEnergy;
+            console.log('score_energy:', newUser.score_energy);
 
             $.post('/api/users', newUser, function(result) {
                 console.log(result);
+                console.log(result.diet[0]);
             }).catch(function(error) {
                 console.log(error);
             });

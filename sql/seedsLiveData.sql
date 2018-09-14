@@ -53,3 +53,87 @@ INSERT INTO questions (text, CategoryId)
 VALUES ('Do you have low energy?', 7);
 INSERT INTO questions (text, CategoryId)
 VALUES ('What is your stress level?', 5);
+
+/*FOODS TABLE*/
+INSERT INTO FOOD (name)
+VALUES ('Eggs');
+INSERT INTO FOOD (name)
+VALUES ('Salmon');
+INSERT INTO FOOD (name)
+VALUES ('Tuna');
+INSERT INTO FOOD (name)
+VALUES ('Chicken Breast');
+INSERT INTO FOOD (name)
+VALUES ('Spinach');
+INSERT INTO FOOD (name)
+VALUES ("Brocoli");
+INSERT INTO FOOD (name)
+VALUES ('Boiled Potatoes');
+INSERT INTO FOOD (name)
+VALUES ('Protein Smoothie');
+INSERT INTO FOOD (name)
+VALUES ('Milk');
+INSERT INTO FOOD (name)
+VALUES ('Rice');
+INSERT INTO FOOD (name)
+VALUES ('Nuts/Nut Butter');
+INSERT INTO FOOD (name)
+VALUES ('Red Meat');
+INSERT INTO FOOD (name)
+VALUES ('Mashed Potatoes');
+INSERT INTO FOOD (name)
+VALUES ('Greek Yogurt');
+INSERT INTO FOOD (name)
+VALUES ('Turkey');
+INSERT INTO FOOD (name)
+VALUES ('Chicken');
+INSERT INTO FOOD (name)
+VALUES ('Avocado');
+INSERT INTO FOOD (name)
+VALUES ('Lentil/Seeds');
+INSERT INTO FOOD (name)
+VALUES ('Kale');
+INSERT INTO FOOD (name)
+VALUES ('Veggies');
+INSERT INTO FOOD (name)
+VALUES ('Apple');
+INSERT INTO FOOD (name)
+VALUES ('Coffee/Tea');
+INSERT INTO FOOD (name)
+VALUES ('Chocolate');
+INSERT INTO FOOD (name)
+VALUES ('Banana/Fruit');
+INSERT INTO FOOD (name)
+VALUES ('Smoothie');
+INSERT INTO FOOD (name) 
+VALUES ('Healthy Cereal');
+
+/*Recommendations*/
+INSERT INTO RECOMMENDATIONS (text, min_score, max_score, CategoryId)
+VALUES ('Lose Weight', 20, 100, 2);
+INSERT INTO RECOMMENDATIONS (text, min_score, max_score, CategoryId)
+VALUES ('Gain Weight', 20, 100, 2);
+INSERT INTO RECOMMENDATIONS (text, min_score, max_score, CategoryId)
+VALUES ('Easy to Digest', 20, 100, 2);
+INSERT INTO RECOMMENDATIONS (text, min_score, max_score, CategoryId)
+VALUES ('Gain Energy', 20, 100, 3);
+
+/*FoodRecommendations*/
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (1, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (2, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (3, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (4, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (5, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (6, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (7. 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (8, 2);
+INSERT INTO FOODRECOMMENDATIONS (FoodId, RecommendationId)
+VALUES (9, 2);

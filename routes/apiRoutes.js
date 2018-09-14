@@ -181,13 +181,77 @@ router.get('/users/id/:id', function(req, res) {
 
 //CREATE new user
 router.post('/users', function(req, res) {
+    var recObj = {
+        "diet": [],
+        "energy": [],
+        "habit" : []
+    };
     db.User.create(req.body).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);
-    });
+        db.Recommendation.findAll({
+            where: {
+                [Op.and]: {
+                    [Op.and]: {
+                        min_score: {
+                            [Op.lte]: result.score_diet
+                        },
+                        max_score: {
+                            [Op.gte]: result.score_diet
+                        }
+                    },
+                    CategoryId: [2, 3, 5, 6]
+                }
+            }
+        }).then(function(recDiet) {
+            recObj.diet = recDiet;
+            db.Recommendation.findAll({
+                where: {
+                    [Op.and]: {
+                        [Op.and]: {
+                            min_score: {
+                                [Op.lte]: result.score_energy
+                            },
+                            max_score: {
+                                [Op.gte]: result.score_energy
+                            }
+                        },
+                        CategoryId: [3, 4, 5, 7]
+                    }
+                }
+            }).then(function(recEnergy) {
+                recObj.energy = recEnergy;
+                db.Recommendation.findAll({
+                    where: {
+                        [Op.and]: {
+                            [Op.and]: {
+                                min_score: {
+                                    [Op.lte]: result.score_habit
+                                },
+                                max_score: {
+                                    [Op.gte]: result.score_habit
+                                }
+                            },
+                            CategoryId: [4, 5, 6, 8]
+                        }
+                    }
+                }).then(function(recHabit) {
+
+                    recObj.habit = recHabit;
+                    console.log(recObj);
+                    res.status(200);
+                    return res.json(recObj);
+                }).catch(function(err) {
+                    res.status(404);
+                    return res.json(err);
+                });
+            }).catch(function(err) {
+                res.status(404);
+                return res.json(err);
+            });
+        }).catch(function(error) {
+            res.status(404);
+            res.json(error);
+        });
+    }); 
 });
 
 //UPDATE user
@@ -235,6 +299,6 @@ router.post('/userrecommendations', function(req, res) {
         res.status(404);
         return res.json(error);
     });
-})
+});
 
 module.exports = router;

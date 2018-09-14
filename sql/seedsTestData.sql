@@ -7,10 +7,10 @@ INSERT INTO users (username, password, first_name, last_name, age, gender, heigh
 VALUES ('test3', 'abc123', 'Sarah', 'Smith', 29, 'f', 64, 145, 20, false, 10, false, 6, false, 8, 60, false, 8, 75, 85, 75);
 
 /* SEED THE RECOMMENDATIONS TABLE */
-INSERT INTO recommendations (text, min_score, max_score, CategoryId) 
+/* INSERT INTO recommendations (text, min_score, max_score, CategoryId) 
 VALUES ('test', 50, 100, 8);
 INSERT INTO recommendations (text, min_score, max_score, CategoryId) 
-VALUES ('test2', 40, 60, 7);
+VALUES ('test2', 40, 60, 7); */
 
 /* SEED THE USERRECOMMENDATIONS TABLE */
 INSERT INTO userrecommendations (RecommendationId, UserId) 

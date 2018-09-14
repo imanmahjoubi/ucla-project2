@@ -26,6 +26,12 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
             }
         });
+        Recommendation.hasMany(models.FoodRecommendation, {
+            onDelete: 'cascade',
+            foreignKey: {
+                allowNull: false
+            }
+        });
     };
     return Recommendation;
 };
