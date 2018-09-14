@@ -21,13 +21,7 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        Recommendation.belongsTo(models.Category, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-        Recommendation.hasMany(models.FoodRecommendation, {
-            onDelete: 'cascade',
+        Recommendation.hasMany(models.Food, {
             foreignKey: {
                 allowNull: false
             }
