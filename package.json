@@ -7,6 +7,7 @@
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
@@ -14,6 +15,6 @@
     "morgan": "~1.9.0",
     "mysql2": "^1.6.1",
     "pug": "2.0.0-beta11",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.1"
   }
 }

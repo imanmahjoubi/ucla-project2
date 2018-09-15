@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
 res.sendFile('../public/index.html');
 
+});
+router.get('/quiz', function(req, res) {
+    res.render('index', { title: 'MyNutriadvisor' });
+
 
 });
 
