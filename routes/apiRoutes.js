@@ -17,6 +17,17 @@ router.get('/questions', function(req, res) {
     });
 });
 
+//READ by id
+router.get('/questions/id/:id', function(req, res) {
+    db.Question.findAll({}).then(function(result) {
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
+});
+
 //READ questions by category
 router.get('/questions/:category', function(req, res) {
     db.Question.findAll({
@@ -74,7 +85,8 @@ router.get('/articles', function(req, res) {
         return res.json(error);
     });
 });
-
+//=========================================================================
+//=========================================================================
 //Users
 
 //READ all users
@@ -103,14 +115,33 @@ router.get('/users/id/:id', function(req, res) {
     });
 });
 
+//READ user by username (unique field)
+router.get('/users/username/:username', function(req, res) {
+    db.User.findOne({
+        where: {
+            username: req.params.username
+        }
+    }).then(function(result) {
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
+});
+
 //CREATE new user
-router.post('/users', function(req, res) {
+router.put('/users', function(req, res) {
     var recObj = {
         "diet": [],
         "energy": [],
         "habit" : []
     };
-    db.User.create(req.body).then(function(result) {
+    db.User.update(req.body, {
+        where: {
+            username: req.body.username
+        }
+    }).then(function(result) {
         db.Recommendation.findAll({
             include : {
                 model: db.Food
@@ -167,11 +198,27 @@ router.post('/users', function(req, res) {
                         }
                     }
                 }).then(function(recHabit) {
-
                     recObj.habit = recHabit;
-                    console.log(recObj);
-                    res.status(200);
-                    return res.json(recObj);
+                    var bulkCreateArray = [];
+                    for (var i = 0; i < recObj.diet.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: result.id});
+                    }
+                    for (var i = 0; i < recObj.habit.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: result.id});
+                    }
+                    for (var i = 0; i < recObj.energy.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: result.id});
+                    }
+                    console.log(bulkCreateArray);
+                    db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
+                        console.log(newUserRecs);
+                        console.log(recObj);
+                        res.status(200);
+                        return res.json(recObj);
+                    }).catch(function(error) {
+                        res.status(404);
+                        return res.json(error);
+                    });
                 }).catch(function(err) {
                     res.status(404);
                     return res.json(err);
@@ -182,9 +229,24 @@ router.post('/users', function(req, res) {
             });
         }).catch(function(error) {
             res.status(404);
-            res.json(error);
+            return res.json(error);
         });
+    }).catch(function(error) {
+        return res.json(error);
     }); 
+});
+
+//READ
+//view column names
+//will be necessary when loading questions onto template
+router.get('/users/view_columns', function(req, res) {
+    db.sequelize.query('SHOW COLUMNS FROM users').then(function(result){
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
 });
 
 //UPDATE user

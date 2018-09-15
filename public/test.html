@@ -17,10 +17,6 @@
                 <input type="text" class="username form-control">
             </div>
             <div class="form-group">
-                <label>password</label>
-                <input type="text" class="password form-control">
-            </div>
-            <div class="form-group">
                 <label>first name</label>
                 <input type="text" class="first-name form-control">
             </div>
@@ -101,7 +97,6 @@
             event.preventDefault();
             var newUser = {
                 username: $('.username').val(),
-                password: $('.password').val(),
                 first_name: $('.first-name').val(),
                 last_name: $('.last-name').val(),
                 age: parseInt($('.age').val()),
@@ -305,25 +300,17 @@
             newUser.score_energy = newUser.score_energy / countEnergy;
             console.log('score_energy:', newUser.score_energy);
 
-            $.post('/api/users', newUser, function(result) {
-                console.log(result);
-                console.log(result.diet[0]);
+            $.ajax({
+                url: '/api/users',
+                method: 'PUT',
+                data: newUser
+            }).then(function(result) {
+                console.log(result)
             }).catch(function(error) {
                 console.log(error);
             });
-        });
+        }); 
 
-        $('#user-rec').on('submit', function(event) {
-            event.preventDefault();
-            $.post('/api/userrecommendations', {
-                RecommendationId: $('.rec-id').val(),
-                UserId: $('.user-id').val()
-            }, function(result) {
-                console.log(result);
-            }).catch(function(error) {
-                console.log(error);
-            });
-        });
         
     </script>
 </body>

@@ -3,13 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //api routes
 var apiRouter = require('./routes/apiRoutes');
 //for testing purposes
-var form = require('./routes/form');
+var formRouter = require('./routes/form');
+var signupRouter = require('./routes/signup');
+var loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -21,13 +24,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+// app.use(session({
+//   secret: 'keyboard cat',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: true },
+//   genid: function(req) {
+//     return genuuid(function(err, uuid){
+//       return uuid;
+//   });// use UUIDs for session IDs
+//   }
+// }));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //for api routes
 app.use('/api', apiRouter);
 //for testing form
-app.use('/form', form);
+app.use('/form', formRouter);
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
