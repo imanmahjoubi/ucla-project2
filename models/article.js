@@ -14,11 +14,6 @@ module.exports = function(sequelize, DataTypes) {
                 allowNull: false
             }
         });
-        Article.belongsTo(models.Category, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
     };
     return Article;
 }

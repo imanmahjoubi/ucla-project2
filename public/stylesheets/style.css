@@ -1,12 +1,35 @@
+/* Body */
+html, body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+body a{
+transition:0.5s all;
+-webkit-transition:0.5s all;
+-moz-transition:0.5s all;
+-o-transition:0.5s all;
+-ms-transition:0.5s all;
+}
+body h1,h2,h3,h4,h5,h6{
+    font-family: 'Oswald', sans-serif;
+}
 /* Nav bar*/
 
 nav ul a,
 nav .brand-logo {
-  color: #26e644;
+  color: black;
+  margin-bottom: 0;
+  border-radius: 0;
 }
+.nav-wrapper{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}  
+
 
 .sidenav-trigger {
-    color: #26a69a;
+    color: #2be644;
   }
 
 /* Main Display */
@@ -18,23 +41,25 @@ nav .brand-logo {
 .btn{
   background-color: #ff407d;
 }
+.btn:hover{
+  background-color: #26e644;
+}
 .container-fluid{
-  background-image: url("../images/bachground-810.png");
+  background-image: url("../images/backgroun800.png");
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100%;
-  height: 580px;
+  height: 48em;
   padding: 2rem;
-  padding-top: 15rem;
-  
-  
+  padding-top: 19rem;
 }
+
 
 /* Why Us */
 
 .container-fluid-2{
   width: 100%;
-  height: 580px;
+  height: 48em;
   margin-top: 5rem;
   padding: 2rem;
   color: black;
@@ -42,18 +67,20 @@ nav .brand-logo {
 .why{
   color: #2be644;
   text-align: center;
+  font-weight: bolder;
 }
 .us{
   color : black;
   text-align: left;
   margin-top: 10%;
+  font-size: 1.5rem;
 }
 
 .circle {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 20px;
   color: white;
   line-height: 100px;
   text-align: center;
@@ -64,7 +91,7 @@ nav .brand-logo {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 20px;
   color: white;
   line-height: 100px;
   text-align: center;
@@ -74,14 +101,15 @@ nav .brand-logo {
 
 .vl{
   border-left: 6px solid black;
-  height: 100px;
+  height: 300px;
   margin-left: 41%;
 }
 
 /* our team */
 .container-fluid-3{
-  height: 580px;
+  height: 50em;
   background-color: #ff407d;
+  margin-top: 5rem;
 }
 .team{
   color: white;
@@ -89,6 +117,8 @@ nav .brand-logo {
   font-weight: bolder;
 }
 .image{
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 .col.s3{
@@ -102,22 +132,55 @@ nav .brand-logo {
 }
 
 .parallax-container{
-  height: 580px;;
+  height: 50em;
+  
 }
 .parallax {
   background-image: url("../images/image.png");
   background-size: cover;
   background-attachment: fixed;
+  padding: 15rem;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .container-fluid-4{
   text-align: center;
-  height: 580px;
+  height: 48em;
+  margin-top: 5rem;
+}
+form{
+  margin-top: 4rem;
+  width: 500px;
+  height: 500px;
+}
+textarea{
+  border: 2px solid black;
+  height: 200px;
+}
+.our{
+  border-radius: 50%;
 }
 
+.modal{
+  width: 400px;
+  text-align: center;
+}
 
+.style{
+  padding: .5rem;
+}
+.input-field input[type=text]{
+  border: 2px solid #000;
+}
+
+.page-footer{
+  background-color: black;
+}
+.carousel-item{
+  width: 300px;
+  height: 300px;
+}
 
 @media only screen and (max-width : 992px) {
   .container-fluid {
