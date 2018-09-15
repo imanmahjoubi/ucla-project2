@@ -6,12 +6,5 @@ module.exports = function(sequelize, DataTypes) {
     {
         timestamps: false
     });
-    Question.associate = function(models) {
-        Question.belongsTo(models.Category, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    }
     return Question;
 };
