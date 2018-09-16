@@ -3,11 +3,12 @@
 /**
  * Module dependencies.
  */
-
+var passport = require('passport');
 var app = require('../app');
 var debug = require('debug')('ucla-project2:server');
 var http = require('http');
 var db = require('../models');
+require('../config/passport/passport.js')(passport, db.User);
 /**
  * Get port from environment and store in Express.
  */

@@ -126,7 +126,7 @@ router.get('/users/username/:username', function(req, res) {
         return res.json(result);
     }).catch(function(error) {
         res.status(404);
-        return res.json(error);
+        return res.json(error);         
     });
 });
 
@@ -142,6 +142,7 @@ router.put('/users', function(req, res) {
             username: req.body.username
         }
     }).then(function(result) {
+        console.log(req.body.score_diet);
         db.Recommendation.findAll({
             include : {
                 model: db.Food
@@ -150,10 +151,10 @@ router.put('/users', function(req, res) {
                 [Op.and]: {
                     [Op.and]: {
                         min_score: {
-                            [Op.lte]: result.score_diet
+                            [Op.lte]: req.body.score_diet
                         },
                         max_score: {
-                            [Op.gte]: result.score_diet
+                            [Op.gte]: req.body.score_diet
                         }
                     },
                     CategoryId: 1
@@ -169,10 +170,10 @@ router.put('/users', function(req, res) {
                     [Op.and]: {
                         [Op.and]: {
                             min_score: {
-                                [Op.lte]: result.score_energy
+                                [Op.lte]: req.body.score_energy
                             },
                             max_score: {
-                                [Op.gte]: result.score_energy
+                                [Op.gte]: req.body.score_energy
                             }
                         },
                         CategoryId: 4
@@ -188,37 +189,46 @@ router.put('/users', function(req, res) {
                         [Op.and]: {
                             [Op.and]: {
                                 min_score: {
-                                    [Op.lte]: result.score_habit
+                                    [Op.lte]: req.body.score_habit
                                 },
                                 max_score: {
-                                    [Op.gte]: result.score_habit
+                                    [Op.gte]: req.body.score_habit
                                 }
                             },
                             CategoryId: [2, 3]
                         }
                     }
                 }).then(function(recHabit) {
-                    recObj.habit = recHabit;
-                    var bulkCreateArray = [];
-                    for (var i = 0; i < recObj.diet.length; i++) {
-                        bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: result.id});
-                    }
-                    for (var i = 0; i < recObj.habit.length; i++) {
-                        bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: result.id});
-                    }
-                    for (var i = 0; i < recObj.energy.length; i++) {
-                        bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: result.id});
-                    }
-                    console.log(bulkCreateArray);
-                    db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
-                        console.log(newUserRecs);
-                        console.log(recObj);
-                        res.status(200);
-                        return res.json(recObj);
+                    db.User.findOne({
+                        where: {
+                            username: req.body.username
+                        }
+                    }).then(function(data) {
+                        recObj.habit = recHabit;
+                        var bulkCreateArray = [];
+                        for (var i = 0; i < recObj.diet.length; i++) {
+                            bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: data.id});
+                        }
+                        for (var i = 0; i < recObj.habit.length; i++) {
+                            bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: data.id});
+                        }
+                        for (var i = 0; i < recObj.energy.length; i++) {
+                            bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: data.id});
+                        }
+                        console.log(bulkCreateArray);
+                        db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
+                            console.log(newUserRecs);
+                            console.log(recObj);
+                            res.status(200);
+                            return res.json(recObj);
+                        }).catch(function(error) {
+                            res.status(404);
+                            return res.json(error);
+                        });
                     }).catch(function(error) {
                         res.status(404);
                         return res.json(error);
-                    });
+                    })
                 }).catch(function(err) {
                     res.status(404);
                     return res.json(err);
