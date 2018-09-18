@@ -7,6 +7,8 @@ var session = require('express-session');
 var passport = require('passport');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var handlebars = require('express-handlebars');
+var bodyParser = require('body-parser');
 //api routes
 var apiRouter = require('./routes/apiRoutes');
 //for testing purposes
@@ -16,12 +18,12 @@ var authRouter = require('./routes/auth');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
