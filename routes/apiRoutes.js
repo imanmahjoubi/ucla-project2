@@ -289,4 +289,21 @@ router.delete('/users/:id', function(req, res) {
     });
 });
 
+//UserRecommendations
+
+//CREATE new record
+router.post('/userrecommendations', function(req, res) {
+    console.log(req.params.rec_id, req.params.user_id);
+    db.UserRecommendation.create({
+        RecommendationId: req.body.RecommendationId,
+        UserId: req.body.UserId
+    }).then(function(result) {
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
+})
+
 module.exports = router;

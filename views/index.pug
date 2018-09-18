@@ -1,5 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  img(
+  src='../images/logo.png'
+  class=''
+  )
+
+  i(
+  class='far fa-times-circle fa-2x'
+  )
+  div.form-group
+    label(for="name") Your Name
+    input(class="validate" type="text" placeholder="your name" name="name" id="name")
+
