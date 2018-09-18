@@ -39,6 +39,12 @@ nav .brand-logo {
   color: #2be644;
   font-weight: bolder;
 }
+.btn-large{
+  background-color: #ff407d;
+}
+.btn-large:hover{
+  background-color: #26e644
+}
 .btn{
   background-color: #ff407d;
 }
@@ -117,7 +123,7 @@ nav .brand-logo {
   text-align: center;
   font-weight: bolder;
 }
-.image{
+.our{
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -131,25 +137,24 @@ nav .brand-logo {
 .detail{
   color: white;
 }
-
-.parallax-container{
-  height: 50em;
-
-}
-
-.parallax {
+.parallax-effect {
   background-image: url("../images/image.png");
   background-size: cover;
   background-attachment: fixed;
-  padding: 15rem;
-  -webkit-transition: all 0.2s ease;
+  height: 50em;
+  padding: 15rem; 
+  /* -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease; */
 }
 .container-fluid-4{
   text-align: center;
   height: 48em;
   margin-top: 5rem;
+}
+.header{
+  color: #ff407d;
+  font-weight: bolder;
 }
 .p {
   font-size: 24px;
@@ -171,14 +176,15 @@ nav .brand-logo {
 .gender:hover {
   background: rgba(33, 187, 0, 0.27);
 }
-
 form{
   margin-top: 17rem;
   width: 30%;
   height: 30%;
 }
 textarea{
-  border: 2px solid black;
+  border: 1px solid #ff407d;
+  border-radius: 5px;
+  background-color: rgba(118,255,3, 0.2);
   height: 200px;
 }
 .our{
@@ -193,24 +199,235 @@ textarea{
 .style{
   padding: .5rem;
 }
+.input-field input[type=text]{
+  border: 1px solid #ff407d;
+  border-radius: 5px;
+  background-color: rgba(118,255,3, 0.2);
+  
+}
 
 .page-footer{
   background-color: black;
 }
-.carousel-item{
-  width: 300px;
-  height: 300px;
+
+.one-time {
+  height: 200px;
+  width: 200px;
+  margin-left: 40%;
+}
+.slider-image{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+.slider-content{
+  text-align: center;
+  color: white;
 }
 
-@media only screen and (max-width : 992px) {
+/*Responsive*/
+
+@media only screen and (max-width : 1024px) {
   .container-fluid {
-    padding-top: 3rem;
+    height: 40em;
+    padding-top: 12rem;
+  }
+  .container-fluid-2 {
+    margin-top: 0;
+    height: 40em;
+  
+  }
+  .us{
+    font-size: 1.2rem;
+  }
+  .vl{
+    height: 250px;
+    margin-left: 45%;
+  }
+  .container-fluid-3 {
+    margin-top: 3rem;
+    height: 40em;
+  
+  }
+  .parallax-effect{
+    height: 40em;
+    padding: 8rem;
+  }
+  .container-fluid-4{
+    text-align: left;
+    height: 40em;
+    margin-right: 5em;
+  }
+  .header{
+    font-size: 1.8em;
+    margin-left: 40%;
+  }
+  form{
+    margin-top: 0rem;
+    width: 400px;
+    height: 400px;
+  }
+  #submit{
+    margin-left: 50%;
   }
 }
-
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 768px) {
   .container-fluid {
-    padding-top: 2rem;
+    height: 30em;
+    padding-top: 9em;
+  }
+  h4{
+    font-size: 1.8em;
+  }
+  .magic{
+    font-size: .8em;
+  }
+  .container-fluid-2 {
+    margin-top: 0;
+    height: 30em;
+  
+  }
+  .us{
+    font-size: 1rem;
+  }
+  .vl{
+    height: 200px;
+    margin-left: 52%;
+  }
+  .container-fluid-3 {
+    margin-top: 3rem;
+    height: 30em;
+  
+  }
+  .our{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  .parallax-effect{
+    height: 30em;
+    padding: 5rem;
+  }
+  .slider-image{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+  .one-time {
+    height: 150px;
+    width: 150px;
+    margin-left: 40%;
+  }
+  .container-fluid-4{
+    height: 35em;
+    margin-top: 1rem;
+    margin-left: 25%;
+  }
+  form{
+    margin-top: 0rem;
+    width: 300px;
+    height: 300px;
+  }
+  textarea{
+    height: 100px;
+  }
+  .header{
+    font-size: 1.5em;
+    margin-left: 55%;
+    text-align: center;
+  }
+  #submit{
+    margin-left: 55%;
+  }
+  
+}
+
+@media only screen and (max-width : 425px) {
+  .container-fluid {
+    padding-top: 0rem;
+    height: 30em;
+  }
+  h4{
+    font-size: 1rem;
+  }
+  .magic{
+    font-size: .5rem;
+  }
+  .btn-small{
+      padding: 2px;
+      background-color: #ff407d;
+  }
+  .waves-effect{
+    font-size: .5rem;
+  }
+  .us{
+    font-size: .6rem;
+    margin-top: 5%;
+  }
+  .container-fluid-2{
+    padding: 1rem;
+    margin-top: 0rem;
+    height: 30em;
+  }
+  .vl{
+    height: 100px;
+    margin-left: 50%;
+  }
+  .circle{
+    height: 50px;
+    width: 50px;
+    font-size: 10px;
+    line-height: 50px;
+  }
+  .circle2{
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    font-size: 10px;
+  }
+  .container-fluid-3{
+    height: 30em;
+    margin-top: 0rem;
+    padding: 0rem;
+    
+  }
+  .our{
+    width: 80px;
+    height: 80px;
+  }
+  .detail{
+    font-size: .6rem;
+  }
+  .parallax-effect{
+    padding: 3rem;
+    height: 30em;
+  }
+  .slider-image{
+    height: 100px;
+    width: 100px;
+  }
+  .slider-content{
+    font-size: 0.6rem;
+  }
+  .one-time{
+    margin-top: 5rem;
+    width: 100px;
+    height: 100px;
+    margin-left: 35%;
+  }
+  .container-fluid-4{
+    text-align: center;
+    margin-left: 7%;
+    margin-right: 0%;
+  }
+  .header{
+    margin-left: 60%;
+    margin-right: -30%;
+    font-size: 1.2rem;
+  }
+  #submit{
+    margin-left: 75%;
+    margin-right: 0%;
   }
 }
 i {

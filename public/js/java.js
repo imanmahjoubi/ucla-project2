@@ -2,17 +2,14 @@ $(document).ready(function(){
     $('.parallax').parallax();
     $('.sidenav').sidenav();
     $('.modal').modal();
-    $('.carousel').carousel();
+    
 
 
     
         $('.one-time').slick({
           dots: true,
-          default:false,
-          slidesToShow : 1,
-          speed : 300,
-          infinite : true,
-          autoPlay : true
+          autoplay : true,
+          arrows : false
         });
       
   
@@ -94,4 +91,10 @@ $(window).scroll(function() {
 });
 
     
-
+$.post("/api/Contacts").then(function(data){
+    console.log(data);
+   $(".first-name").val();
+   $(".last-name").val();
+   $(".email").val();
+   $(".message").val(); 
+});
