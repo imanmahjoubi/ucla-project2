@@ -6,4 +6,5 @@ module.exports = function(sequelize, DataTypes){
         message:{type:DataTypes.STRING}
     });
     return Contact;
-}
+ }
+

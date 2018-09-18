@@ -3,13 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
+var passport = require('passport');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //api routes
 var apiRouter = require('./routes/apiRoutes');
 //for testing purposes
-var form = require('./routes/form');
+var formRouter = require('./routes/form');
+var authRouter = require('./routes/auth');
+
 var app = express();
 
 // view engine setup
@@ -22,12 +25,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'keyboard cat', 
+  reserve: true, 
+  saveUninitialized:true
+}));
+app.use(passport.initialize())
+app.use(passport.session())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //for api routes
 app.use('/api', apiRouter);
 //for testing form
-app.use('/form', form);
+app.use('/form', formRouter);
+app.use('/auth', authRouter);
 
 
 
