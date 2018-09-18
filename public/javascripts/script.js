@@ -4,6 +4,11 @@ $(document).ready(function() {
         last_name : '',
         gender : '',
         email : '',
+        username : '',
+        weight: '',
+        height: '',
+        age: ''
+
     };
     var count = 1;
    /* var  getInputVal = function (input , val){
@@ -16,6 +21,11 @@ $(document).ready(function() {
         console.log('first', $('#first_name').val());
         var first = $('#first_name').val();
         user.first_name = first;
+    });
+    $('#username').blur(function () {
+        console.log('username', $('#username').val());
+        var username = $('#username').val();
+        user.username = username;
     });
     $('#last_name').blur(function () {
         console.log('last', $('#last_name').val());
@@ -35,8 +45,8 @@ $(document).ready(function() {
         user.gender = 'male;'
     });
     $('#bday').blur(function () {
-        console.log('bday', $('#bday').val());
-        user.birthday = $('#bday').val();
+        console.log('age', $('#bday').val());
+        user.age = $('#bday').val();
     });
 
    // if($('.submit').)
