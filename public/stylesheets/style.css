@@ -14,6 +14,7 @@ transition:0.5s all;
 body h1,h2,h3,h4,h5,h6{
     font-family: 'Oswald', sans-serif;
 }
+
 /* Nav bar*/
 
 nav ul a,
@@ -25,7 +26,7 @@ nav .brand-logo {
 .nav-wrapper{
   margin-left: 2rem;
   margin-right: 2rem;
-}  
+}
 
 
 .sidenav-trigger {
@@ -133,8 +134,9 @@ nav .brand-logo {
 
 .parallax-container{
   height: 50em;
-  
+
 }
+
 .parallax {
   background-image: url("../images/image.png");
   background-size: cover;
@@ -149,10 +151,31 @@ nav .brand-logo {
   height: 48em;
   margin-top: 5rem;
 }
+.p {
+  font-size: 24px;
+  color: #2be644;
+  margin-left: 13%;
+}
+.p2 {
+  font-size: 24px;
+  color: #2be644;
+}
+.gender-container {
+  border-radius: 5px 20px 5px !important;
+
+}
+.gender {
+  width : 150px;
+  height: 200px;
+}
+.gender:hover {
+  background: rgba(33, 187, 0, 0.27);
+}
+
 form{
-  margin-top: 4rem;
-  width: 500px;
-  height: 500px;
+  margin-top: 17rem;
+  width: 30%;
+  height: 30%;
 }
 textarea{
   border: 2px solid black;
@@ -169,9 +192,6 @@ textarea{
 
 .style{
   padding: .5rem;
-}
-.input-field input[type=text]{
-  border: 2px solid #000;
 }
 
 .page-footer{
@@ -195,4 +215,17 @@ textarea{
 }
 i {
   float: right;
+}
+
+h4{
+  margin-left:160%;
+  color: #2be644;
+  font-family: 'Andale Mono';
+
+}
+
+.fas {
+  position: absolute !important;
+  right: 7% !important;
+  bottom: 3%;
 }

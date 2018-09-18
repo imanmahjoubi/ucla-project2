@@ -9,12 +9,16 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
     "bpm": "0.0.2",
-    "cookie-parser": "~1.4.3",
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
+    "express-handlebars": "^3.0.0",
+    "http-errors": "^1.6.3",
+    "morgan": "^1.9.1",
     "mysql2": "^1.6.1",
+    "parser": "^0.1.4",
+    "path": "^0.12.7",
     "pug": "2.0.0-beta11",
     "sequelize": "^4.38.1"
   }
