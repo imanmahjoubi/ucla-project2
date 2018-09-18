@@ -1,48 +1,67 @@
 var express = require('express');
-//var router = express.Router();
-var exphbs = require("express-handlebars");
-var path = require('path');
-var bodyParser = require('body-parser');
-var app = express();
-
-
-
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-var tst ={
-    title: 'nutirition',
-    count : 1
-};
-var count = 1;
+var router = express.Router();
+var db = require('../models');
 
 /* GET home page. */
-app.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-res.sendFile('../public/index.html');
+    res.sendFile('../public/index.html');
 
 });
 
-app.get('/quiz', function(req, res) {
+router.get('/quiz', function(req, res) {
   // res.sendFile(path.resolve('../public/q1.html'));
-    res.render("q1",tst);
+    db.Question.findAll({
+        where: {
+            id: 1
+        }
+    }).then(function(questionData) {
+        if (!questionData) {
+            window.alert('there was an error');
+            return res.status(200);
+        } else {
+            var textObj = {
+                id: questionData[0].id,
+                text: questionData[0].text
+            };
+            //res.status(200);
+            res.render('question', textObj);
+            //console.log(questionData[0].text);
+        }
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
 
 });
-app.post('/quiz', function(req, res) {
-    // res.sendFile(path.resolve('../public/q1.html'));
-     tst.count++;
-     var count= "q"+tst.count;
-     console.log('question: ',tst.count);
-     if(tst.count == '12'){
-        res.render('Thank you');
-    } else {
-        res.render(count,tst);
-    }
-    
-
-
+router.post('/quiz', function(req, res) {
+    var questNum = parseInt(req.body.question);
+    questNum++;
+    console.log(questNum);
+    db.Question.findAll({
+        where: {
+            id: questNum
+        }
+    }).then(function(questionData) {
+        if (!questionData) {
+            window.alert('there was an error');
+            return res.status(200);
+        } else {
+            var textObj = {
+                id: questionData[0].id,
+                text: questionData[0].text
+            };
+            console.log(textObj);
+            //res.status(200);
+            //res.render('question', textObj)
+            //console.log(questionData[0].text);
+            res.json(textObj);
+        }
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
 });
 
 
-module.exports = app;
+module.exports = router;

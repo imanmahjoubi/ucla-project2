@@ -130,13 +130,17 @@ router.get('/users/username/:username', function(req, res) {
     });
 });
 
+var recObj = {
+    "diet": [],
+    "energy": [],
+    "habit" : []
+};
+
 //CREATE new user
 router.put('/users', function(req, res) {
-    var recObj = {
-        "diet": [],
-        "energy": [],
-        "habit" : []
-    };
+    recObj.diet = [];
+    recObj.energy = [];
+    recObj.habit = [];
     db.User.update(req.body, {
         where: {
             username: req.body.username
@@ -221,6 +225,7 @@ router.put('/users', function(req, res) {
                             console.log(recObj);
                             res.status(200);
                             return res.json(recObj);
+                            //return res.render('thankyou', recObj);
                         }).catch(function(error) {
                             res.status(404);
                             return res.json(error);
@@ -304,6 +309,11 @@ router.post('/userrecommendations', function(req, res) {
         res.status(404);
         return res.json(error);
     });
+});
+
+router.get('/userrecommendations/', function(req, res) {
+    console.log('-------------------------------------------------');
+    return res.json(recObj);
 })
 
 module.exports = router;
