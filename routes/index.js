@@ -34,8 +34,12 @@ app.post('/quiz', function(req, res) {
      tst.count++;
      var count= "q"+tst.count;
      console.log('question: ',tst.count);
-     console.log('data: ',req.body);
-    res.render(count,tst);
+     if(tst.count == '12'){
+        res.render('Thank you');
+    } else {
+        res.render(count,tst);
+    }
+    
 
 
 });

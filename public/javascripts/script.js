@@ -91,10 +91,32 @@ $(document).ready(function() {
     });
 
     if(user.diet){
+        console.log(user);
         // this means we fill in the last thing and we gonna send to dara base :)
+        $.ajax({
+            method: 'PUT',
+            url: '/users',
+            data: {
+                username: user.username,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                age: user.age,
+                gender: user.gender,
+                height: user.height,
+                weight: user.weight,
+                body_fat: user.body_fat,
+                smoker: user.smoker,
+                workout_hours: user.workout_hrs,
+                diet: user.diet,
+                sleep: user.sleep,
+                digestion:
+            }
+        }, function(result) {
+            console.log('rslt ',result);
+        });
     }
 
-   // if($('.submit').)
+   
 
 
 });
