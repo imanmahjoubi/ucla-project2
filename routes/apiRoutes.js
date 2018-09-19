@@ -311,9 +311,8 @@ router.post('/userrecommendations', function(req, res) {
     });
 });
 
-router.get('/userrecommendations/', function(req, res) {
-    console.log('-------------------------------------------------');
-    return res.json(recObj);
-})
+// router.get('/userrecommendations/:username', function(req, res) {
+//     return res.render('thankyou', recObj);
+// });
 
 module.exports = router;

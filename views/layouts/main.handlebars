@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <style>
@@ -38,28 +38,22 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script type="text/JavaScript" src="../javascripts/script.js"></script>
+<script type="text/JavaScript" src="/javascripts/script.js"></script>
 <a href="#index.html" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
 <i class="far fa-times-circle fa-2x" style="float: right"></i>
-<form class=" form-control update-form">
-    {{{body}}}
-    <button class="btn btn-large waves-effect waves-light submit" type="submit" id="submit" name="action">Next
-        <i class="fas fa-chevron-right"></i>
-    </button>
+<div class="container">
+    <div class="form-div">
+        <form class=" form-control update-form">
+            {{{body}}}
+            <button class="btn btn-large waves-effect waves-light submit" type="submit" id="submit" name="action">Next
+                <i class="fas fa-chevron-right"></i>
+            </button>
 
-</form>
-{{!-- <script>
-    $(document).ready(function() {
-        var count = 1;
-        $('#submit').click(function () {
-            console.log(count);
-            count++;
-        });
-        if (count == 9) {
-            $('#submit').hide();
-            $('#send').show();
-        }
-    });
-</script> --}}
+        </form>
+    </div>
+    <div class="rec-data">
+    {{!-- this is where the recommendations will go  --}}
+    </div>
+</div>
 </body>
 </html>
