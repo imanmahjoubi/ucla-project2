@@ -1,2 +1,22 @@
-<h1> Thank your submmission!</h1>
-<h2>Here are your Recommendations</h2>
+{{#each recommendation.diet}}
+      <h3>{{text}}</h3>
+       {{#each Food}}
+          {{name}} <br />
+       {{/each}}
+    {{/each}}
+
+
+    {{#each recommendation.energy}}
+      <h3>{{text}}</h3>
+       {{#each Food}}
+          {{name}} <br />
+       {{/each}}
+    {{/each}}
+
+
+    {{#each recommendation.habit}}
+      <h3>{{text}}</h3>
+       {{#each Food}}
+          {{name}} <br />
+       {{/each}}
+    {{/each}}
