@@ -117,36 +117,105 @@ router.get('/users/id/:id', function(req, res) {
 
 //READ user by username (unique field)
 router.get('/users/username/:username', function(req, res) {
-    db.User.findOne({
-        where: {
-            username: req.params.username
-        }
-    }).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);         
-    });
+    console.log('------------------------------------------------------------------')
+    var foundUser = null;
+    var recommendationsObject = {};
+    db.User.findAll({
+            where: {
+                username: req.params.username
+            }
+        }).then(function(user) {
+             foundUser = user[0];
+            db.Recommendation.findAll({
+                include : {
+                    model: db.Food
+                },
+                where: {
+                    [Op.and]: {
+                        [Op.and]: {
+                            min_score: {
+                                [Op.lte]: foundUser.score_diet
+                            },
+                            max_score: {
+                                [Op.gte]: foundUser.score_diet
+                            }
+                        },
+                        CategoryId: 1
+                    }
+                }
+            }).then(function(recDiet) {
+                recommendationsObject.diet = recDiet;
+                db.Recommendation.findAll({
+                    include: {
+                        model: db.Food
+                    },
+                    where: {
+                        [Op.and]: {
+                            [Op.and]: {
+                                min_score: {
+                                    [Op.lte]: foundUser.score_energy
+                                },
+                                max_score: {
+                                    [Op.gte]: foundUser.score_energy
+                                }
+                            },
+                            CategoryId: 4
+                        }
+                    }
+                }).then(function(recEnergy) {
+                    recommendationsObject.energy = recEnergy;
+                    db.Recommendation.findAll({
+                        include: {
+                            model: db.Food
+                        },
+                        where: {
+                            [Op.and]: {
+                                [Op.and]: {
+                                    min_score: {
+                                        [Op.lte]: foundUser.score_habit
+                                    },
+                                    max_score: {
+                                        [Op.gte]: foundUser.score_habit
+                                    }
+                                },
+                                CategoryId: [2, 3]
+                            }
+                        }
+                    }).then(function(recHabit) {
+                      
+                            recommendationsObject.habit = recHabit;
+                            console.log(recommendationsObject);
+                            res.render('thankyou', { recommendations: recommendationsObject} );
+    
+                    }).catch(function(err) {
+                        
+                        return res.status(500);
+                    });
+                }).catch(function(err) {
+                return res.status(500);
+                });
+            }).catch(function(error) {
+                return res.status(500);
+            });
+        }).catch(function(error) {
+            return res.status(500);
+        }); 
 });
 
-var recObj = {
-    "diet": [],
-    "energy": [],
-    "habit" : []
-};
+
 
 //CREATE new user
 router.put('/users', function(req, res) {
-    recObj.diet = [];
-    recObj.energy = [];
-    recObj.habit = [];
+    var recObj = {
+        "diet": [],
+        "energy": [],
+        "habit" : []
+    };
     db.User.update(req.body, {
         where: {
             username: req.body.username
         }
     }).then(function(result) {
-        console.log(req.body.score_diet);
         db.Recommendation.findAll({
             include : {
                 model: db.Food

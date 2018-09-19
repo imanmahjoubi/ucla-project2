@@ -25,7 +25,6 @@ $(document).ready(function() {
     };
 
     var keysArray = Object.keys(user);
-    console.log(keysArray[0]);
     var count = 0;
     $('.submit').on('click', function(event) {
         event.preventDefault();
@@ -74,7 +73,7 @@ $(document).ready(function() {
                 } else if (user.stress_level >= 8) {
                     user.score_habit -= 15 ;
                 }
-                if (user.workout_hours <= 0) {
+                if (user.workout_hours === 0) {
                     user.score_habit -= 25;
                 } else if (user.workout_hours <= 3.5) {
                     user.score_habit -= 10;
@@ -149,43 +148,13 @@ $(document).ready(function() {
                 console.log('score_energy:', user.score_energy);
                 
                 console.log(user);
-
-                
-
                 $.ajax({
                     url: '/api/users',
                     method: 'PUT',
                     data: user
                 }).then(function(result) {
                     console.log(result);
-
-                    var recsDiv = $('<div>');
-
-                    function createContent(category) {
-                        var categoryDiv = $('<div>');
-                        var currentCategory = result[category];;
-                        for (var i = 0; i < currentCategory.length; i++) {
-                            var newRecDiv = $('<div>');
-                            var heading = $('<h2>').html(currentCategory[i].text);
-                            var minScoreP = $('<p>').html('Minimum Score: ' + currentCategory[i].min_score);
-                            var maxScoreP= $('<p>').html('Maximum Score: ' + currentCategory[i].max_score);
-                            var foodsDiv = $('<div>');
-                            for (var j = 0; j < currentCategory[i].Food.length; j++) {
-                                var foodP = $('<p>').html(currentCategory[i].Food[j].name);
-                                foodsDiv.append(foodP);
-                            }
-                            newRecDiv.append(heading).append(minScoreP).append(maxScoreP).append(foodsDiv);
-                            categoryDiv.append(newRecDiv);
-                        }
-                        recsDiv.append(categoryDiv); 
-                    }
-                    
-                    createContent('diet');
-                    createContent('habit');
-                    createContent('energy');
-
-                    $('.form-div').hide();
-                    $('.rec-data').append(recsDiv);
+                    window.location.href = '/api/users/username/' + user.username;
                 }).catch(function(error) {
                     console.log(error);
                 });  
