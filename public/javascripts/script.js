@@ -158,34 +158,34 @@ $(document).ready(function() {
                     data: user
                 }).then(function(result) {
                     console.log(result);
+                    window.location.href = '/api/userrecommendations';
+                    // var recsDiv = $('<div>');
 
-                    var recsDiv = $('<div>');
-
-                    function createContent(category) {
-                        var categoryDiv = $('<div>');
-                        var currentCategory = result[category];;
-                        for (var i = 0; i < currentCategory.length; i++) {
-                            var newRecDiv = $('<div>');
-                            var heading = $('<h2>').html(currentCategory[i].text);
-                            var minScoreP = $('<p>').html('Minimum Score: ' + currentCategory[i].min_score);
-                            var maxScoreP= $('<p>').html('Maximum Score: ' + currentCategory[i].max_score);
-                            var foodsDiv = $('<div>');
-                            for (var j = 0; j < currentCategory[i].Food.length; j++) {
-                                var foodP = $('<p>').html(currentCategory[i].Food[j].name);
-                                foodsDiv.append(foodP);
-                            }
-                            newRecDiv.append(heading).append(minScoreP).append(maxScoreP).append(foodsDiv);
-                            categoryDiv.append(newRecDiv);
-                        }
-                        recsDiv.append(categoryDiv); 
-                    }
+                    // function createContent(category) {
+                    //     var categoryDiv = $('<div>');
+                    //     var currentCategory = result[category];;
+                    //     for (var i = 0; i < currentCategory.length; i++) {
+                    //         var newRecDiv = $('<div>');
+                    //         var heading = $('<h2>').html(currentCategory[i].text);
+                    //         var minScoreP = $('<p>').html('Minimum Score: ' + currentCategory[i].min_score);
+                    //         var maxScoreP= $('<p>').html('Maximum Score: ' + currentCategory[i].max_score);
+                    //         var foodsDiv = $('<div>');
+                    //         for (var j = 0; j < currentCategory[i].Food.length; j++) {
+                    //             var foodP = $('<p>').html(currentCategory[i].Food[j].name);
+                    //             foodsDiv.append(foodP);
+                    //         }
+                    //         newRecDiv.append(heading).append(minScoreP).append(maxScoreP).append(foodsDiv);
+                    //         categoryDiv.append(newRecDiv);
+                    //     }
+                    //     recsDiv.append(categoryDiv); 
+                    // }
                     
-                    createContent('diet');
-                    createContent('habit');
-                    createContent('energy');
+                    // createContent('diet');
+                    // createContent('habit');
+                    // createContent('energy');
 
-                    $('.form-div').hide();
-                    $('.rec-data').append(recsDiv);
+                    // $('.form-div').hide();
+                    // $('.rec-data').append(recsDiv);
                 }).catch(function(error) {
                     console.log(error);
                 });  

@@ -311,8 +311,12 @@ router.post('/userrecommendations', function(req, res) {
     });
 });
 
-// router.get('/userrecommendations/:username', function(req, res) {
-//     return res.render('thankyou', recObj);
-// });
+router.get('/userrecommendations', function(req, res) {
+    var handlebarsObj = {
+        recommendation: recObj
+    }
+    console.log(handlebarsObj);
+    res.render('thankyou', handlebarsObj);
+});
 
 module.exports = router;
