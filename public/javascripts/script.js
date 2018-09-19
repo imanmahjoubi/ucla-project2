@@ -25,7 +25,6 @@ $(document).ready(function() {
     };
 
     var keysArray = Object.keys(user);
-    console.log(keysArray[0]);
     var count = 0;
     $('.submit').on('click', function(event) {
         event.preventDefault();

@@ -184,6 +184,7 @@ router.get('/users/username/:username', function(req, res) {
                     }).then(function(recHabit) {
                       
                             recommendationsObject.habit = recHabit;
+                            console.log(recommendationsObject);
                             res.render('thankyou', { recommendations: recommendationsObject} );
     
                     }).catch(function(err) {
