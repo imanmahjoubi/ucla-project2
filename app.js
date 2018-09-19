@@ -9,12 +9,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
+var LocalStrategy = require('passport-local');
+
+
 //api routes
 var apiRouter = require('./routes/apiRoutes');
 //for testing purposes
 var formRouter = require('./routes/form');
 var authRouter = require('./routes/auth');
 
+var db = require('./models');
 var app = express();
 
 // view engine setup
@@ -30,10 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat', 
   reserve: true, 
-  saveUninitialized:true
+  saveUninitialized: true
 }));
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //for api routes
@@ -42,7 +46,16 @@ app.use('/api', apiRouter);
 app.use('/form', formRouter);
 app.use('/auth', authRouter);
 
+// app.get('/auth', function(req, res) {
+//   res.sendFile('auth.html', {root: 'public'});
+// });
 
+
+passport.use(new LocalStrategy(db.User.authenticate));
+passport.serializeUser(db.User.serializeUser);
+passport.deserializeUser(db.User.deserializeUser);
+
+// app.post('/auth/login', passport.authenticate('local-signup', { successRedirect: '/form', failureRedirect: '/auth'}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

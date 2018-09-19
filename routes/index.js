@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,8 +10,10 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/quiz', function(req, res) {
+router.get('/quiz', ensureLoggedIn('/auth'), function(req, res) {
   // res.sendFile(path.resolve('../public/q1.html'));
+    console.log('*******************************************************');
+    console.log(req.session.passport);
     db.Question.findAll({
         where: {
             id: 1
