@@ -46,6 +46,7 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/auth' 
             return next(err);
         }
         console.log('-----------------------------------------------------');
+        console.log(req.user.username);
         console.log(req.session.passport);
         res.redirect('/');
     });
