@@ -6,11 +6,11 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-    res.sendFile('../public/index.html');
+    res.sendFile('index.html', {root: 'public'});
 
 });
 
-router.get('/quiz', ensureLoggedIn('/auth'), function(req, res) {
+router.get('/quiz', function(req, res) {
   // res.sendFile(path.resolve('../public/q1.html'));
     console.log('*******************************************************');
     console.log(req.session.passport);
