@@ -205,16 +205,13 @@ router.get('/users/username/:username', function(req, res) {
 
 
 //CREATE new user
-router.put('/users', function(req, res) {
+router.post('/users', function(req, res) {
     var recObj = {
         "diet": [],
         "energy": [],
         "habit" : []
     };
-    db.User.update(req.body, {
-        where: {
-            username: req.body.username
-        }
+    db.User.create(req.body, {
     }).then(function(result) {
         db.Recommendation.findAll({
             include : {

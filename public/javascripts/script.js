@@ -150,7 +150,7 @@ $(document).ready(function() {
                 console.log(user);
                 $.ajax({
                     url: '/api/users',
-                    method: 'PUT',
+                    method: 'POST',
                     data: user
                 }).then(function(result) {
                     console.log(result);
