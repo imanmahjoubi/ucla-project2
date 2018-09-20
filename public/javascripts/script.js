@@ -1,8 +1,17 @@
 $(document).ready(function() {
-    const NUM_QUESTIONS = 18;
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    const NUM_QUESTIONS = 16;
     var user = {
-        username: '',
-        password: '',
         first_name: '',
         last_name: '',
         age: '',
@@ -146,15 +155,15 @@ $(document).ready(function() {
                 }
     
                 console.log('score_energy:', user.score_energy);
-                
+                console.log
                 console.log(user);
                 $.ajax({
                     url: '/api/users',
-                    method: 'POST',
+                    method: 'PUT',
                     data: user
                 }).then(function(result) {
                     console.log(result);
-                    window.location.href = '/api/users/username/' + user.username;
+                    window.location.href = '/api/users/username/' + readCookie('username');
                 }).catch(function(error) {
                     console.log(error);
                 });  

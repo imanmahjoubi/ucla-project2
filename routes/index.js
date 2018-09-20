@@ -10,10 +10,12 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/quiz', function(req, res) {
+router.get('/quiz', ensureLoggedIn('/auth'), function(req, res) {
   // res.sendFile(path.resolve('../public/q1.html'));
     console.log('*******************************************************');
-    console.log(req.session.passport);
+    console.log(req.user.username);
+    console.log(req.session.passport.user);
+    //console.log(req.session.passport);
     db.Question.findAll({
         where: {
             id: 1
@@ -42,7 +44,8 @@ router.get('/quiz', function(req, res) {
 
 });
 
-router.post('/quiz', function(req, res) {
+router.post('/quiz', ensureLoggedIn('/auth'), function(req, res) {
+
     var questNum = parseInt(req.body.question);
     questNum++;
     console.log("QUestion number: ", questNum);

@@ -117,7 +117,7 @@ router.get('/users/id/:id', function(req, res) {
 
 //READ user by username (unique field)
 router.get('/users/username/:username', function(req, res) {
-    console.log('------------------------------------------------------------------')
+    // console.log('------------------------------------------------------------------')
     var foundUser = null;
     var recommendationsObject = {};
     db.User.findAll({
@@ -205,13 +205,16 @@ router.get('/users/username/:username', function(req, res) {
 
 
 //CREATE new user
-router.post('/users', function(req, res) {
+router.put('/users', function(req, res) {
     var recObj = {
         "diet": [],
         "energy": [],
         "habit" : []
     };
-    db.User.create(req.body, {
+    db.User.update(req.body, {
+        where: {
+            username: req.user.username
+        }
     }).then(function(result) {
         db.Recommendation.findAll({
             include : {
@@ -269,37 +272,29 @@ router.post('/users', function(req, res) {
                         }
                     }
                 }).then(function(recHabit) {
-                    db.User.findOne({
-                        where: {
-                            username: req.body.username
-                        }
-                    }).then(function(data) {
-                        recObj.habit = recHabit;
-                        var bulkCreateArray = [];
-                        for (var i = 0; i < recObj.diet.length; i++) {
-                            bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: data.id});
-                        }
-                        for (var i = 0; i < recObj.habit.length; i++) {
-                            bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: data.id});
-                        }
-                        for (var i = 0; i < recObj.energy.length; i++) {
-                            bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: data.id});
-                        }
-                        console.log(bulkCreateArray);
-                        db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
-                            console.log(newUserRecs);
-                            console.log(recObj);
-                            res.status(200);
-                            return res.json(recObj);
-                            //return res.render('thankyou', recObj);
-                        }).catch(function(error) {
-                            res.status(404);
-                            return res.json(error);
-                        });
+                     recObj.habit = recHabit;
+                    var bulkCreateArray = [];
+                    for (var i = 0; i < recObj.diet.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: req.session.passport.user});
+                    }
+                    for (var i = 0; i < recObj.habit.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: req.session.passport.user});
+                    }
+                    for (var i = 0; i < recObj.energy.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: req.session.passport.user});
+                    }
+                    console.log(bulkCreateArray);
+                    db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
+                        res.cookie('username', req.user.username);
+                        console.log(newUserRecs);
+                        console.log(recObj);
+                        res.status(200);
+                        return res.json(recObj);
+                        //return res.render('thankyou', recObj);
                     }).catch(function(error) {
                         res.status(404);
                         return res.json(error);
-                    })
+                    });
                 }).catch(function(err) {
                     res.status(404);
                     return res.json(err);

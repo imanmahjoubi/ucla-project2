@@ -10,10 +10,6 @@ VALUES ('Energy');
 
 /* SEED THE Questions TABLE */
 INSERT INTO Questions (text)
-VALUES ('Enter your username:');
-INSERT INTO Questions (text) 
-VALUES ('Enter your password:');
-INSERT INTO Questions (text)
 VALUES ('What is your first name?');
 INSERT INTO Questions (text)
 VALUES ('What is your last name?');
