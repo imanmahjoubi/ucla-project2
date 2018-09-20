@@ -11,7 +11,7 @@ var passport = require('passport');
 //     res.render('register', { });
 // });
 router.get('/', function(req, res) {
-  
+
   res.sendFile('auth.html', {root: 'public'});
 });
 
@@ -27,12 +27,12 @@ router.post('/signup', (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                res.redirect('/');
+                res.redirect('/quiz');
             });
         });
     }).catch(function(err) {
         return res.render('register', { error : err.message });
-    }); 
+    });
 });
 
 
@@ -48,7 +48,7 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/auth' 
         console.log('-----------------------------------------------------');
         console.log(req.user.username);
         console.log(req.session.passport);
-        res.redirect('/');
+        res.redirect('/quiz');
     });
 });
 

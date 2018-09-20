@@ -19,9 +19,11 @@ router.get('/quiz', ensureLoggedIn('/auth'), function(req, res) {
             id: 1
         }
     }).then(function(questionData) {
-        if (!questionData) {
-            window.alert('there was an error');
-            return res.status(200);
+        console.log("Question data here");
+        console.log(questionData);
+        if (!questionData.length < 0) {
+
+            return res.status(404);
         } else {
             var textObj = {
                 id: questionData[0].id,
@@ -32,28 +34,34 @@ router.get('/quiz', ensureLoggedIn('/auth'), function(req, res) {
             //console.log(questionData[0].text);
         }
     }).catch(function(error) {
+        console.log("An error was triggered");
+        console.log(error);
         res.status(404);
         return res.json(error);
     });
 
 });
+
 router.post('/quiz', function(req, res) {
     var questNum = parseInt(req.body.question);
     questNum++;
-    console.log(questNum);
+    console.log("QUestion number: ", questNum);
     db.Question.findAll({
         where: {
             id: questNum
         }
     }).then(function(questionData) {
+
         if (!questionData) {
-            window.alert('there was an error');
-            return res.status(200);
+            console.log('Question data not found, sending 404');
+           return res.sendStatus(404);
         } else {
+            console.log("Preparing text object");
             var textObj = {
                 id: questionData[0].id,
                 text: questionData[0].text
             };
+            console.log("Text object");
             console.log(textObj);
             //res.status(200);
             //res.render('question', textObj)
@@ -61,6 +69,7 @@ router.post('/quiz', function(req, res) {
             res.json(textObj);
         }
     }).catch(function(error) {
+
         res.status(404);
         return res.json(error);
     });
