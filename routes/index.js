@@ -5,8 +5,12 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  //res.render('index', { title: 'Express' });
+  //res.render('index', { title: 'Express' });\
+//   console.log('----------------------------------------');
+//   console.log(res.passport.user.id);
+//   console.log(req.user.username);
     res.sendFile('index.html', {root: 'public'});
+
 
 });
 

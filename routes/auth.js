@@ -27,7 +27,8 @@ router.post('/signup', (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                res.redirect('/quiz');
+                res.cookie('username', req.body.username);
+                res.redirect('/');
             });
         });
     }).catch(function(err) {
@@ -48,19 +49,22 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/auth' 
         console.log('-----------------------------------------------------');
         console.log(req.user.username);
         console.log(req.session.passport);
-        res.redirect('/quiz');
+        res.cookie('username', req.user.username);
+        res.redirect('/');
     });
 });
 
-// router.get('/logout', (req, res, next) => {
-//     req.logout();
-//     req.session.save((err) => {
-//         if (err) {
-//             return next(err);
-//         }
-//         res.redirect('/');
-//     });
-// });
+router.get('/logout', (req, res, next) => {
+    req.logout();
+    req.session.save((err) => {
+        if (err) {
+            return next(err);
+        }
+        console.log('*******************************');
+        res.clearCookie('username');
+        res.redirect('/');
+    });
+});
 
 router.get('/ping', (req, res) => {
     res.status(200).send("pong!");
