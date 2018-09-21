@@ -185,6 +185,7 @@ router.get('/users/username/:username', function(req, res) {
                       
                             recommendationsObject.habit = recHabit;
                             console.log(recommendationsObject);
+                            res.cookie('quizcomplete', true);
                             res.render('thankyou', { recommendations: recommendationsObject} );
     
                     }).catch(function(err) {
@@ -285,7 +286,8 @@ router.put('/users', function(req, res) {
                     }
                     console.log(bulkCreateArray);
                     db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
-                        res.cookie('username', req.user.username);
+                        //set cookie with username
+                        // res.cookie('username', req.user.username);
                         console.log(newUserRecs);
                         console.log(recObj);
                         res.status(200);
