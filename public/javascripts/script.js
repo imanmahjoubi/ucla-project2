@@ -54,6 +54,8 @@ $(document).ready(function() {
                     $('.question-text').html(data.text);
                     $('.answer-input').data('id', data.id);
                     $('.answer-input').val('');
+                    console.log(data.id);
+                    $('#question-num').html(data.id);
                     count++;
                 });
             } else {

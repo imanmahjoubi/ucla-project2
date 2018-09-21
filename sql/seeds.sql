@@ -16,31 +16,31 @@ VALUES ('What is your last name?');
 INSERT INTO Questions (text)
 VALUES ('How old are you?');
 INSERT INTO Questions (text)
-VALUES ('Gender');
+VALUES ('Gender (m or f)');
 INSERT INTO Questions (text)
 VALUES ('How much do you weigh?');
 INSERT INTO Questions (text)
-VALUES ('How tall are you?');
+VALUES ('How tall are you? (in inches)');
 INSERT INTO Questions (text)
-VALUES ('What is your body fat percentage?');
+VALUES ('What is your body fat percentage? (decimal value)');
 INSERT INTO Questions (text)
-VALUES ('Do you smoke?');
+VALUES ('Do you smoke? (true/false)');
 INSERT INTO Questions (text)
-VALUES ('How many hours per week do you work out?');
+VALUES ('How many hours per week do you work out? (numeric value)');
 INSERT INTO Questions (text)
-VALUES ('Are you following a diet?');
+VALUES ('Are you following a diet? (true/false)');
 INSERT INTO Questions (text)
-VALUES ('How many hours do you sleep per dary?');
+VALUES ('How many hours do you sleep per day? (numeric value)');
 INSERT INTO Questions (text)
-VALUES ('Do you have digestive problems?');
+VALUES ('Do you have digestive problems? (true/false)');
 INSERT INTO Questions (text)
-VALUES ('How many drinks do you have per week?');
+VALUES ('How many drinks do you have per week? (numeric value)');
 INSERT INTO Questions (text)
-VALUES ('How many hours per day do you work?');
+VALUES ('How many hours per day do you work? (numeric value)');
 INSERT INTO Questions (text)
-VALUES ('Do you have low energy?');
+VALUES ('Do you have low energy? (true/false)');
 INSERT INTO Questions (text)
-VALUES ('What is your stress level?');
+VALUES ('What is your stress level? (1 through 10)');
 
 /*Recommendations TABLE*/
 INSERT INTO Recommendations (text, min_score, max_score, CategoryId)
