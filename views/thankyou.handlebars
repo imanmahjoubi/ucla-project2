@@ -1,0 +1,25 @@
+{{#each recommendations.diet}}
+    <h3>{{text}}</h3>
+    {{#each Food}}
+        {{name}} <br />
+        <img class="food-pic" src="{{image}}">
+    {{/each}}
+{{/each}}
+
+
+{{#each recommendations.energy}}
+    <h3>{{text}}</h3>
+    {{#each Food}}
+        {{name}} <br />
+        <img class="food-pic" src="{{image}}"> <br>
+    {{/each}}
+{{/each}}
+
+
+{{#each recommendations.habit}}
+    <h3>{{text}}</h3>
+    {{#each Food}}
+        {{name}} <br />
+        <img class="food-pic" src="{{image}}"> <br>
+    {{/each}}
+{{/each}}

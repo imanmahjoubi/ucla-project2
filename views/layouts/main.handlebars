@@ -31,40 +31,57 @@
             border-radius: 0 !important;
             font-family: 'Andale Mono', sans-serif;
         }
+        .question-dev {
+            margin-left: 100%;
+            width: 500px;
+        }
+        .question-text {
+            font-family: 'Open Sans', sans-serif;
+            color: #ff407d;
+            font-size: 16px;
+        }
     </style>
 </head>
 
 <body>
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script type="text/JavaScript" src="../javascripts/script.js"></script>
-<a href="#index.html" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
-<i class="far fa-times-circle fa-2x" style="float: right"></i>
-<form method="post"  class=" form-control update-form">
-    {{{body}}}
-    <button class="btn btn-large waves-effect waves-light submit" type="submit" id="submit" name="action">Next
-        <i class="fas fa-chevron-right"></i>
-    </button>
-    <button class="btn btn-large waves-effect waves-light submit" type="submit" id="send" name="action" hidden>Submit
-        <i class="fas fa-chevron-right"></i>
-    </button>
-</form>
+<script type="text/JavaScript" src="/javascripts/script.js"></script>
 <script>
-    $(document).ready(function() {
-        var count = 1;
-        $('#submit').click(function () {
-            console.log(count);
-            count++;
-        });
-        if (count == 9) {
-            $('#submit').hide();
-            $('#send').show();
+     function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    $(document).ready(function(){
+        if (readCookie('quizcomplete')) {
+            $('.submit').hide();
+        } else {
+            $('.submit').show();
         }
     });
 </script>
+<a href="/" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
+<i class="far fa-times-circle fa-2x" style="float: right"></i>
+<div class="container">
+    <div class="form-div">
+        <form class=" form-control update-form">
+            {{{body}}}
+            <button class="btn btn-large waves-effect waves-light submit" type="submit" id="submit" name="action">Next
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+        </form>
+    </div>
+    <div class="rec-data">
+    {{!-- this is where the recommendations will go  --}}
+    </div>
+</div>
 </body>
 </html>

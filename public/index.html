@@ -22,7 +22,39 @@
       <link rel="stylesheet" type="text/css" href="./stylesheets/animations.css">
       <!--Link to Magic animation-->
       <link rel="stylesheet" type="text/css" href="./stylesheets/magic.min.css">
+      <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+     <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>     
 
+    <script type="text/JavaScript" src="./js/java.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        console.log('hello');
+        function readCookie(name) {
+          var nameEQ = name + "=";
+          var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+      }
+      var nameFromCookie = readCookie('username');  
+      console.log(nameFromCookie);
+      if  (nameFromCookie) {
+        
+        $('#login-button').html('').html(nameFromCookie);
+        $('#login-button').attr('href', '/auth/logout');
+      }
+      });
+      
+    </script>
     </head>
 
     <body>
@@ -42,7 +74,7 @@
                   <li><a class="nav-link" href="#our-team">Our Team</a></li>
                   <li><a data-target="modal2" class="modal-trigger">Blog</a></li>
                   <li><a class="nav-link" href="#contact">Contact Us</a></li>
-                  <li><button data-target="modal1" class="btn modal-trigger">Login</button></li>
+                  <li><a class="waves-effect waves-light btn" id='login-button' href="/auth">Login</a></li>
               </ul>
             </div>
           </nav>
@@ -240,6 +272,7 @@
           </div>
         </div>
       </div>
+
 
 
 
@@ -579,7 +612,6 @@
       <!--Close footer section-->
       </footer>
 
-
       <!--Link to JQuery-->
       <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -592,6 +624,7 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script> 
       <!--Link to custon javscript file-->
       <script type="text/JavaScript" src="./js/java.js"></script>
+
 
 
     </body>

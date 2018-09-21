@@ -17,6 +17,17 @@ router.get('/questions', function(req, res) {
     });
 });
 
+//READ by id
+router.get('/questions/id/:id', function(req, res) {
+    db.Question.findAll({}).then(function(result) {
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
+});
+
 //READ questions by category
 router.get('/questions/:category', function(req, res) {
     db.Question.findAll({
@@ -74,7 +85,8 @@ router.get('/articles', function(req, res) {
         return res.json(error);
     });
 });
-
+//=========================================================================
+//=========================================================================
 //Users
 
 //READ all users
@@ -103,14 +115,108 @@ router.get('/users/id/:id', function(req, res) {
     });
 });
 
+//READ user by username (unique field)
+router.get('/users/username/:username', function(req, res) {
+    // console.log('------------------------------------------------------------------')
+    var foundUser = null;
+    var recommendationsObject = {};
+    db.User.findAll({
+            where: {
+                username: req.params.username
+            }
+        }).then(function(user) {
+             foundUser = user[0];
+            db.Recommendation.findAll({
+                include : {
+                    model: db.Food
+                },
+                where: {
+                    [Op.and]: {
+                        [Op.and]: {
+                            min_score: {
+                                [Op.lte]: foundUser.score_diet
+                            },
+                            max_score: {
+                                [Op.gte]: foundUser.score_diet
+                            }
+                        },
+                        CategoryId: 1
+                    }
+                }
+            }).then(function(recDiet) {
+                recommendationsObject.diet = recDiet;
+                db.Recommendation.findAll({
+                    include: {
+                        model: db.Food
+                    },
+                    where: {
+                        [Op.and]: {
+                            [Op.and]: {
+                                min_score: {
+                                    [Op.lte]: foundUser.score_energy
+                                },
+                                max_score: {
+                                    [Op.gte]: foundUser.score_energy
+                                }
+                            },
+                            CategoryId: 4
+                        }
+                    }
+                }).then(function(recEnergy) {
+                    recommendationsObject.energy = recEnergy;
+                    db.Recommendation.findAll({
+                        include: {
+                            model: db.Food
+                        },
+                        where: {
+                            [Op.and]: {
+                                [Op.and]: {
+                                    min_score: {
+                                        [Op.lte]: foundUser.score_habit
+                                    },
+                                    max_score: {
+                                        [Op.gte]: foundUser.score_habit
+                                    }
+                                },
+                                CategoryId: [2, 3]
+                            }
+                        }
+                    }).then(function(recHabit) {
+                      
+                            recommendationsObject.habit = recHabit;
+                            console.log(recommendationsObject);
+                            res.cookie('quizcomplete', true);
+                            res.render('thankyou', { recommendations: recommendationsObject} );
+    
+                    }).catch(function(err) {
+                        
+                        return res.status(500);
+                    });
+                }).catch(function(err) {
+                return res.status(500);
+                });
+            }).catch(function(error) {
+                return res.status(500);
+            });
+        }).catch(function(error) {
+            return res.status(500);
+        }); 
+});
+
+
+
 //CREATE new user
-router.post('/users', function(req, res) {
+router.put('/users', function(req, res) {
     var recObj = {
         "diet": [],
         "energy": [],
         "habit" : []
     };
-    db.User.create(req.body).then(function(result) {
+    db.User.update(req.body, {
+        where: {
+            username: req.user.username
+        }
+    }).then(function(result) {
         db.Recommendation.findAll({
             include : {
                 model: db.Food
@@ -119,10 +225,10 @@ router.post('/users', function(req, res) {
                 [Op.and]: {
                     [Op.and]: {
                         min_score: {
-                            [Op.lte]: result.score_diet
+                            [Op.lte]: req.body.score_diet
                         },
                         max_score: {
-                            [Op.gte]: result.score_diet
+                            [Op.gte]: req.body.score_diet
                         }
                     },
                     CategoryId: 1
@@ -138,10 +244,10 @@ router.post('/users', function(req, res) {
                     [Op.and]: {
                         [Op.and]: {
                             min_score: {
-                                [Op.lte]: result.score_energy
+                                [Op.lte]: req.body.score_energy
                             },
                             max_score: {
-                                [Op.gte]: result.score_energy
+                                [Op.gte]: req.body.score_energy
                             }
                         },
                         CategoryId: 4
@@ -157,21 +263,40 @@ router.post('/users', function(req, res) {
                         [Op.and]: {
                             [Op.and]: {
                                 min_score: {
-                                    [Op.lte]: result.score_habit
+                                    [Op.lte]: req.body.score_habit
                                 },
                                 max_score: {
-                                    [Op.gte]: result.score_habit
+                                    [Op.gte]: req.body.score_habit
                                 }
                             },
                             CategoryId: [2, 3]
                         }
                     }
                 }).then(function(recHabit) {
-
-                    recObj.habit = recHabit;
-                    console.log(recObj);
-                    res.status(200);
-                    return res.json(recObj);
+                     recObj.habit = recHabit;
+                    var bulkCreateArray = [];
+                    for (var i = 0; i < recObj.diet.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.diet[i].id, UserId: req.session.passport.user});
+                    }
+                    for (var i = 0; i < recObj.habit.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.habit[i].id, UserId: req.session.passport.user});
+                    }
+                    for (var i = 0; i < recObj.energy.length; i++) {
+                        bulkCreateArray.push({RecommendationId: recObj.energy[i].id, UserId: req.session.passport.user});
+                    }
+                    console.log(bulkCreateArray);
+                    db.UserRecommendation.bulkCreate(bulkCreateArray).then(function(newUserRecs) {
+                        //set cookie with username
+                        // res.cookie('username', req.user.username);
+                        console.log(newUserRecs);
+                        console.log(recObj);
+                        res.status(200);
+                        return res.json(recObj);
+                        //return res.render('thankyou', recObj);
+                    }).catch(function(error) {
+                        res.status(404);
+                        return res.json(error);
+                    });
                 }).catch(function(err) {
                     res.status(404);
                     return res.json(err);
@@ -182,9 +307,24 @@ router.post('/users', function(req, res) {
             });
         }).catch(function(error) {
             res.status(404);
-            res.json(error);
+            return res.json(error);
         });
+    }).catch(function(error) {
+        return res.json(error);
     }); 
+});
+
+//READ
+//view column names
+//will be necessary when loading questions onto template
+router.get('/users/view_columns', function(req, res) {
+    db.sequelize.query('SHOW COLUMNS FROM users').then(function(result){
+        res.status(200);
+        return res.json(result);
+    }).catch(function(error) {
+        res.status(404);
+        return res.json(error);
+    });
 });
 
 //UPDATE user
@@ -232,6 +372,10 @@ router.post('/userrecommendations', function(req, res) {
         res.status(404);
         return res.json(error);
     });
-})
+});
+
+// router.get('/userrecommendations/:username', function(req, res) {
+//     return res.render('thankyou', recObj);
+// });
 
 module.exports = router;
