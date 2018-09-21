@@ -64,7 +64,7 @@
         <nav class="white">
             <div class="nav-wrapper">
               <!--Logo-->
-              <a href="#index.html" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
+              <a href="index.html" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
               <!--Menu Icon-->
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <!--Nav item link-->
@@ -72,7 +72,7 @@
                   <li><a class="nav-link" href="#home">Home</a></li>
                   <li><a class="nav-link" href="#why-us">Why Us?</a></li>
                   <li><a class="nav-link" href="#our-team">Our Team</a></li>
-                  <li><a class="nav-link" href="#">Blog</a></li>
+                  <li><a data-target="modal2" class="modal-trigger">Blog</a></li>
                   <li><a class="nav-link" href="#contact">Contact Us</a></li>
                   <li><a class="waves-effect waves-light btn" id='login-button' href="/auth">Login</a></li>
               </ul>
@@ -87,11 +87,14 @@
               <li><a href="#home">Home</a></li>
               <li><a href="#why-us">Why Us?</a></li>
               <li><a href="#our-team">Our Team</a></li>
-              <li><a href="#blog">Blog</a></li>
+              <li><a data-target="modal2" class="modal-trigger">Blog</a></li>
               <li><a href="#contact">Contact Us</a></li>
               <li><button data-target="modal1" class="btn modal-trigger">Login</button></li>
           </ul>
-        <div class="container-fluid" id="animate">
+        <!--side Navbar End-->
+        
+      <!----Main Container-->
+        <div class="container-fluid" id="home">
           <div class="row">
             <div class="col s5">
               <!--Welcoming-->
@@ -156,9 +159,12 @@
                       Stephen
                     </h4>
                     <p class="detail">
-                      A Full Stack Developers
+                      BackEnd Developer
                     </p>
-
+                    <p>
+                      <a class="linkp" href="http://stephenpellegrini.net"><img src="./images/atlas-solid.svg" width="32px" height="32px"alt="portfolio"></a>
+                      <a class="linkp" href="https://www.linkedin.com/in/stephen-pellegrini-ab5111153/"><img src="./images/linkedin-logo.png" alt="Linkedin"></a>
+                    </p>
                 </div>
                 <!--Nazam-->
                 <div class="col s3">
@@ -168,9 +174,13 @@
                       Nazam
                     </h4>
                     <p class="detail">
-                      A Full Stack Developers
+                       FrontEnd Developer
                     </p>
-
+                    <p>
+                      <a class="linkp" href="https://knazim667.github.io/MyPortFolio/"><img src="./images/atlas-solid.svg" width="32px" height="32px"alt="portfolio"></a>
+                      <a class="linkp" href="https://www.linkedin.com/in/muhammad-nazam-071b06162/"><img src="./images/linkedin-logo.png" alt="Linkedin"></a>
+                    </p>
+                    
                 </div>
                 <!--Iman-->
                 <div class="col s3">
@@ -180,20 +190,29 @@
                       Iman
                     </h4>
                     <p class="detail">
-                      A Full Stack Developers
+                      UI/UX develeper/Designer
                     </p>
-
+                    <p>
+                      <a class="linkp" href="www.imenmahjoubi.com"><img src="./images/atlas-solid.svg" width="32px" height="32px"alt="portfolio"></a>
+                      <a class="linkp" href="https://www.linkedin.com/in/imen-mahjoubi/"><img src="./images/linkedin-logo.png" alt="Linkedin"></a>
+                    </p>
+                    
                 </div>
                 <!--Aynalem-->
                 <div class="col s3">
 
-                  <img class="our" src="/images/aynalm.webp"  alt="aynalm">
+                  <img class="our" src="/images/aynalem.png"  alt="aynalm">
                     <h4 class="name">
                     Aynalm
                     </h4>
                     <p class="detail">
-                      A Full Stack Developers
+                      Article Searcher
                     </p>
+                    <p>
+                      <a class="linkp" href="https://github.com/Elhanang2/portfolio-updated"><img src="./images/atlas-solid.svg" width="32px" height="32px"alt="portfolio"></a>
+                      <a class="linkp" href="https://www.linkedin.com/in/aynalem-getanhe/"><img src="./images/linkedin-logo.png" alt="Linkedin"></a>
+                    </p>
+
                 </div>
               <!--Close the row tag-->
               </div>
@@ -201,98 +220,412 @@
             </div>
           </div>
       </div>
+      <!-- Close our team container-->
        
-        <div class="parallax-effect">
-            <div class="one-time">
-                <div class="slider-item">
-                  <a href="#one!">
-                  <img class="slider-image" src="./images/iman.jpg" />
-                  </a>
-                  <p class="slider-content">Its a owseome website here i found a good recommendations</p>
-                </div>
-                <div class="slider-item">
-                  <a href="#two!">
-                    <img class="slider-image" src="./images/naza.jpg" />
-                  </a>
-                  <p class="slider-content">Its a owseome website here i found a good recommendations</p>
-                </div>
+      <!--Review container-->
+      <!--Parallax effects by Meterlized -->  
+      <div class="parallax-effect">
+        <!-- Slick Slider-->
+          <div class="one-time">
+            <!-- Slider item #1-->
+            <div class="slider-item">
+              <a href="#one!">
+                <img class="slider-image" src="./images/iman.jpg" />
+              </a>
+              <p class="slider-content">Its a owseome website here i found a good recommendations</p>
             </div>
-          </div>
-        <div class="container-fluid-4" id="contact">
-            <div class="row">
-              <div class="container">
 
-                <div class="col s6 offset-l3">
-                  <h4 class="header">Contact Us</h4>
+            <!--Slider item #2-->
+            <div class="slider-item">
+              <a href="#two!">
+                <img class="slider-image" src="./images/naza.jpg" />
+              </a>
+              <p class="slider-content">Its a owseome website here i found a good recommendations</p>
+            </div>
+          <!--Closing Slider Div-->
+          </div>
+      <!--Closing parallax container-->
+      </div>
+
+      <!--Contact us Section-->
+      <div class="container-fluid-4" id="contact">
+        <div class="row">
+          <div class="container">
+               
+            <div class="col s6 offset-l3">
+              <!--Heading-->
+              <h4 class="header">Contact Us</h4>
+              <!--Form with Post method -->
                 <form class="style" method="POST" action="/contacts">
                   <div class="input-field col s12">
-                  <input class="input" placeholder="First Name" type="text" value="" name="first-name" required>
-                  <input class="input" placeholder="Last Name" type="text" value="" name="last-name" required>
-                  <input class="input" placeholder="Email Address" type="text" value="" name="email" required>
-                  
-                  <textarea placeholder="Message" rows="5" name="message" required></textarea>
+                    <input class="input" placeholder="First Name" type="text" value="" name="first-name" required>
+                    <input class="input" placeholder="Last Name" type="text" value="" name="last-name" required>
+                    <input class="input" placeholder="Email Address" type="text" value="" name="email" required>
+                    <!--Textarea for message-->
+                    <textarea placeholder="Message" rows="5" name="message" required></textarea>
                   </div>
+                  <!--Submit Button-->
+                  <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 </form>
-                <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                </div>
+              
+            </div> 
+          </div>
+        </div>
+      </div>
 
+
+
+
+      <!-- Modal Structure For Login -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <!--Creating form for input field -->          
+          <form class="model-style">
+            <div class="input-field col s4">
+              <!--Meterlize icons -->
+              <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" class="validate">
+                  <label for="icon_prefix">User Name</label>
+            </div>
+                    
+                     
+            <div class="input-field col s4">
+              <i class="material-icons prefix">email</i>
+                <input id="icon_email" type="email" class="validate">
+                  <label for="icon_email">Email</label>
+            </div>
+            <br/>
+            <!--Login button-->
+            <button id="btn-login"class="waves-effect waves-light btn" type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Structure For Blog -->
+      <div id="modal2" class="modal">
+          <div class="modal-content">
+            <div class="row">
+              <!--Column-->
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="images/sleep one.png">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      How To Tackle Fibromyalgia Sleep Problems
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.thesleepdoctor.com/blog/">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Here’s The Latest On How To Tackle Fibromyalgia Sleep Problems
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>
+                      I treat a number of patients with fibromyalgia syndrome. They often come to me with chronic insomnia, and difficulty staying asleep throughout the night. Even when they do manage to get a decent night of sleep, my patients with fibromyalgia tell me they still feel..
+                      <!--Link for Website blog-->
+                      <a href="https://www.thesleepdoctor.com/blog/">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--2nd Column-->
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="./images/fall sleep.png">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      Your Fall Sleep Survival Guide
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.thesleepdoctor.com/blog/">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Your Fall Sleep Survival Guide
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>
+                      Here’s how to sleep well as the season shifts Sure, there are a few more weeks of summer, according to the calendar. But this week after Labor Day is when we all mentally make the move into fall mode. The kids are back to school—or soon to be. Summer Fridays at work...
+                      <!--Link for website Blog-->
+                      <a href="https://www.thesleepdoctor.com/blog/">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--3rd Column-->
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="./images/men-health.jpg">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      Mark's Daily Apple by Mark Sisson
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.medicalnewstoday.com/articles/319300.php">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Mark's Daily Apple by Mark Sisson
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>
+                      Mark Sisson founded Mark's Daily Apple in 2006 to help to empower people to take responsibility for their health and life enjoyment by critically rethinking their health and wellness assumptions...
+                      <!--Link for website Blog-->
+                      <a href="https://www.medicalnewstoday.com/articles/319300.php">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-
-
-              <!-- Modal Structure -->
-              <div id="modal1" class="modal">
-                  <div class="modal-content">
-
-                        <form method="post" action="/auth/login">
-                            <div class="input-field col s4">
-                              <i class="material-icons prefix">account_circle</i>
-                              <input id="icon_prefix" name="username" type="text" class="validate">
-                              <label for="icon_prefix">User Name</label>
-                            </div>
-
-
-                            <div class="input-field col s4">
-                              <i class="material-icons prefix">email</i>
-                              <input id="icon_email" name="password">
-                              <label for="icon_email">Password</label>
-                            </div>
-                            <button class="waves-effect waves-light btn" type="submit">Login</button>
-                        </form>
-                        
-                    </div>
+          
+            <!---2nd row-->
+            <div class="row">
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="images/born-fitness.jpg">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      Born Fitness by Adam Bornstein
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.thesleepdoctor.com/blog/">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      Born Fitness by Adam Bornstein
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>Born Fitness is a product that resulted from the frustration of enough conflicting ideas and empty promises to fill all the bookshelves in your home, according to its founder Adam Bornstein..
+                      <!--Link for website Blog-->
+                      <a href="https://www.medicalnewstoday.com/articles/319300.php">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
                 </div>
-
-        <!--Footer-->
-        <footer class="page-footer">
+              </div>
+  
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="./images/smoking.jpg">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      Quit Smoking by Verywell
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.healthline.com/health/quit-smoking/best-blogs-of-the-year#1">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Quit Smoking by Verywell
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>
+                      On their Quit Smoking portal, Verywell offers extensive coverage for smokers trying to quit. These posts are informative, well written, and even entertaining. Recent stop smoking topics include how quitting can affect the medications you take, signs of nicotine withdrawal,.
+                      <!--Link for website Blog-->
+                      <a href="https://www.healthline.com/health/quit-smoking/best-blogs-of-the-year#1">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col s4">
+                <!-- card design for blogs-->
+                <div class="card small">
+                  <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="./images/lung.jpg">
+                  </div>
+                  <!--Card Content-->
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">
+                      A Blog by the American Lung Association
+                      <i class="material-icons right">
+                        more_vert
+                      </i>
+                    </span>
+                    <p>
+                      <!--Link for website Blog-->
+                      <a href="https://www.healthline.com/health/quit-smoking/best-blogs-of-the-year#1">
+                        This is a link
+                      </a>
+                    </p>
+                  </div>
+                  <!--Card Hover section-->
+                  <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">
+                      A Blog by the American Lung Association
+                      <i class="material-icons right">
+                        close
+                      </i>
+                    </span>
+                    <p>The American Lung Association is the largest nonprofit in the United States working to improve lung health and prevent lung disease. Advocating for tobacco cessation is a big part of this. Their website is an essential source for folks trying to quit and in need of support.
+                      <!--Link for website Blog-->
+                      <a href="https://www.healthline.com/health/quit-smoking/best-blogs-of-the-year#1">
+                        Read More
+                      </a>
+                    </p>
+                  </div>
+                </div>  
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+                Agree
+              </a>
+            </div>
+          </div>
+        </div>
+      
+            
+      <!--Footer-->
+      <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">MyNutriadvisor</h5>
+              <p class="grey-text text-lighten-4">Its a free app to find some usefull information about your health.</p>
+              <!--facebook Share-->
+              <div id="fb-root"></div>
+                <script>
+                  (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+                    fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+                <!--Facebook share Button-->
+                <div class="fb-share-button" data-href="http://localhost:3000" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                    Share
+                  </a>
+                </div>
+            </div>
+            <!--Column for Developers links-->
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Developer Links</h5>
+              <ul>
+                <li>
+                  <a class="grey-text text-lighten-3" href="https://github.com/pellegrinisr">Stephen</a>
+                </li>
+                <li>
+                  <a class="grey-text text-lighten-3" href="https://github.com/imanmahjoubi">Iman Mahjoubi</a>
+                </li>
+                <li>
+                  <a class="grey-text text-lighten-3" href="https://github.com/knazim667">M. Nazam</a>
+                </li>
+                <li>
+                  <a class="grey-text text-lighten-3" href="https://github.com/Elhanang2">Aynalem</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">MyNutriadvisor</h5>
-                <p class="grey-text text-lighten-4">Its a free app to find some usefull information about your health.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Developer Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/pellegrinisr">Stephen</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/imanmahjoubi">Iman Mahjoubi</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/knazim667">M. Nazam</a></li>
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/Elhanang2">Aynalem</a></li>
-                </ul>
+              <div class="col s6">
+                © 2018 UCLA Bootcamp Project 2
               </div>
             </div>
           </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2018 UCLA Bootcamp Project 2
-            </div>
-          </div>
-        </footer>
+        </div>
+      <!--Close footer section-->
+      </footer>
+
+      <!--Link to JQuery-->
+      <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous">
+      </script>
+       <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!--Link to Slick Slider-->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script> 
+      <!--Link to custon javscript file-->
+      <script type="text/JavaScript" src="./js/java.js"></script>
 
 
 
-       
     </body>
   </html>
