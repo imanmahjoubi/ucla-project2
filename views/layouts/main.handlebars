@@ -1,0 +1,70 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/handlebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
+        button {
+            float: right !important;
+            background-color: #ff407d !important;
+            font-size: 18px !important;
+            margin-left: 100% !important;
+            position: absolute !important;
+            right: 3% !important;
+            bottom: 3%;
+            border-radius: 5px 20px 5px !important;
+            font-family: 'Andale Mono', sans-serif;
+        }
+        h4 {
+            position: absolute !important;
+            top: 0 !important;
+            right: 45% !important;
+        }
+        .datepicker {
+            float: none !important;
+            background-color: cadetblue !important;
+            font-size: 18px !important;
+            margin-left: 0 !important;
+            position: inherit !important;
+            right: 0 !important;
+            bottom: 0;
+            border-radius: 0 !important;
+            font-family: 'Andale Mono', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/JavaScript" src="../javascripts/script.js"></script>
+<a href="#index.html" class="brand-logo"><img class="logo" src="/images/logo3.png" alt="logo" width="200px" height="50px"></a>
+<i class="far fa-times-circle fa-2x" style="float: right"></i>
+<form method="post"  class=" form-control update-form">
+    {{{body}}}
+    <button class="btn btn-large waves-effect waves-light submit" type="submit" id="submit" name="action">Next
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <button class="btn btn-large waves-effect waves-light submit" type="submit" id="send" name="action" hidden>Submit
+        <i class="fas fa-chevron-right"></i>
+    </button>
+</form>
+<script>
+    $(document).ready(function() {
+        var count = 1;
+        $('#submit').click(function () {
+            console.log(count);
+            count++;
+        });
+        if (count == 9) {
+            $('#submit').hide();
+            $('#send').show();
+        }
+    });
+</script>
+</body>
+</html>

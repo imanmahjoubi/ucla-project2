@@ -14,6 +14,7 @@ transition:0.5s all;
 body h1,h2,h3,h4,h5,h6{
     font-family: 'Oswald', sans-serif;
 }
+
 /* Nav bar*/
 
 nav ul a,
@@ -25,7 +26,7 @@ nav .brand-logo {
 .nav-wrapper{
   margin-left: 2rem;
   margin-right: 2rem;
-}  
+}
 
 
 .sidenav-trigger {
@@ -175,17 +176,20 @@ nav .brand-logo {
 .header{
   color: #ff407d;
   font-weight: bolder;
+  margin-left: 50px;
 }
+
 form{
-  margin-top: 4rem;
-  width: 500px;
-  height: 500px;
+  margin-top: 0px;
+  width: 30%;
+  height: 30%;
 }
 textarea{
   border: 1px solid #ff407d;
   border-radius: 5px;
   background-color: rgba(118,255,3, 0.2);
   height: 200px;
+  width: 500px;
 }
 .our{
   border-radius: 50%;
@@ -193,22 +197,22 @@ textarea{
 
 .style{
   padding: .5rem;
+  width: 538px;
 }
 .input-field input[type=text]{
   border: 1px solid #ff407d;
   border-radius: 5px;
   background-color: rgba(118,255,3, 0.2);
-  
 }
 
 /*modal*/
 
-.modal{
+#modal1{
   width: 400px;
   text-align: center;
-  margin-bottom: 0;
 }
 .model-style{
+  margin-top: 10%;
   margin-left: 15px;
   height: 300px;
   width: 300px;
@@ -261,7 +265,8 @@ textarea{
   }
   .header{
     font-size: 1.8em;
-    margin-left: 40%;
+    margin-left: 60%;
+    margin-right: -10%;
   }
   form{
     margin-top: 0rem;
@@ -269,10 +274,13 @@ textarea{
     height: 400px;
   }
   #submit{
-    margin-left: 50%;
+    margin-left: 40%;
   }
   #modal2{
     width: 960px;
+  }
+  div.col.s6.offset-l3{
+    margin-left: 80px;
   }
 }
 @media only screen and (max-width : 768px) {
@@ -337,7 +345,8 @@ textarea{
   }
   .header{
     font-size: 1.5em;
-    margin-left: 55%;
+    margin-left: 70%;
+    margin-right: -40%;
     text-align: center;
   }
   #submit{
@@ -345,6 +354,18 @@ textarea{
   }
   #modal2{
     width: 720px;
+  }
+  div.col.s6.offset-l3{
+    margin-left: -10%;
+  }
+  .style{
+    width: 400px;
+  }
+  textarea{
+    width: 363px;
+  }
+  #submit{
+    margin-left: 40%;
   }
   
 }
@@ -433,10 +454,18 @@ textarea{
     font-size: 1.2rem;
   }
   #submit{
-    margin-left: 75%;
-    margin-right: 0%;
+    margin-left: 0%;
   }
   #modal{
-    width: 250px;
+    width: 200px;
+  }
+  .style{
+    width: 300px;
+  }
+  textarea{
+    width: 263px;
+  }
+  div.col.s6.offset-l3{
+    margin-left: 0%;
   }
 }

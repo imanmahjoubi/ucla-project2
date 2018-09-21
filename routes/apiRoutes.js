@@ -75,82 +75,6 @@ router.get('/articles', function(req, res) {
     });
 });
 
-//Recommendations
-
-//READ all recommendations
-router.get('/recommendations', function(req, res) {
-    db.Recommendation.findAll({}).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);
-    });
-});
-
-//READ all recommendations by category
-router.get('/recommendations/category/:category', function(req, res) {
-    db.Recommendation.findAll({
-        where: {
-            CategoryId: req.params.category
-        }
-    }).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);
-    });
-});
-
-//READ recommendation range for certain score
-router.get('/recommendations/score/:score', function(req, res) {
-    console.log('route hit');
-    db.Recommendation.findAll({
-        where: {
-            [Op.and]: {
-                min_score: {
-                    [Op.lte]: req.params.score
-                }, 
-                max_score: {
-                    [Op.gte]: req.params.score
-                }
-            }
-        }
-    }).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);
-    });
-});
-
-//READ recommendations by score and category
-router.get('/recommendations/:category/:score', function(req, res) {
-    db.Recommendation.findAll({
-        where: {
-            [Op.and]: {
-                CategoryId: req.params.category,
-                [Op.and]: {
-                    min_score: {
-                        [Op.lte]: req.params.score
-                    },
-                    max_score: {
-                        [Op.gte]: req.params.score
-                    }
-                }
-            }
-        }
-    }).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error){
-        res.status(404);
-        return res.json(error);
-    });
-});
-
 //Users
 
 //READ all users
@@ -181,13 +105,86 @@ router.get('/users/id/:id', function(req, res) {
 
 //CREATE new user
 router.post('/users', function(req, res) {
+    var recObj = {
+        "diet": [],
+        "energy": [],
+        "habit" : []
+    };
     db.User.create(req.body).then(function(result) {
-        res.status(200);
-        return res.json(result);
-    }).catch(function(error) {
-        res.status(404);
-        return res.json(error);
-    });
+        db.Recommendation.findAll({
+            include : {
+                model: db.Food
+            },
+            where: {
+                [Op.and]: {
+                    [Op.and]: {
+                        min_score: {
+                            [Op.lte]: result.score_diet
+                        },
+                        max_score: {
+                            [Op.gte]: result.score_diet
+                        }
+                    },
+                    CategoryId: 1
+                }
+            }
+        }).then(function(recDiet) {
+            recObj.diet = recDiet;
+            db.Recommendation.findAll({
+                include: {
+                    model: db.Food
+                },
+                where: {
+                    [Op.and]: {
+                        [Op.and]: {
+                            min_score: {
+                                [Op.lte]: result.score_energy
+                            },
+                            max_score: {
+                                [Op.gte]: result.score_energy
+                            }
+                        },
+                        CategoryId: 4
+                    }
+                }
+            }).then(function(recEnergy) {
+                recObj.energy = recEnergy;
+                db.Recommendation.findAll({
+                    include: {
+                        model: db.Food
+                    },
+                    where: {
+                        [Op.and]: {
+                            [Op.and]: {
+                                min_score: {
+                                    [Op.lte]: result.score_habit
+                                },
+                                max_score: {
+                                    [Op.gte]: result.score_habit
+                                }
+                            },
+                            CategoryId: [2, 3]
+                        }
+                    }
+                }).then(function(recHabit) {
+
+                    recObj.habit = recHabit;
+                    console.log(recObj);
+                    res.status(200);
+                    return res.json(recObj);
+                }).catch(function(err) {
+                    res.status(404);
+                    return res.json(err);
+                });
+            }).catch(function(err) {
+                res.status(404);
+                return res.json(err);
+            });
+        }).catch(function(error) {
+            res.status(404);
+            res.json(error);
+        });
+    }); 
 });
 
 //UPDATE user
@@ -236,7 +233,5 @@ router.post('/userrecommendations', function(req, res) {
         return res.json(error);
     });
 })
-
-
 
 module.exports = router;

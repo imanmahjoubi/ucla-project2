@@ -1,0 +1,37 @@
+
+i {
+  float: right;
+}
+
+h4{
+  margin-left:160%;
+  color: #2be644;
+  font-family: 'Andale Mono';
+
+}
+
+.fas {
+  position: absolute !important;
+  right: 7% !important;
+  bottom: 3%;
+}
+.p2 {
+    font-size: 24px;
+    color: #2be644;
+  }
+.gender-container {
+    border-radius: 5px 20px 5px !important;
+  
+  }
+.gender {
+    width : 150px;
+    height: 200px;
+  }
+.gender:hover {
+    background: rgba(33, 187, 0, 0.27);
+  }
+  .p {
+    font-size: 24px;
+    color: #2be644;
+    margin-left: 13%;
+  }
