@@ -64,37 +64,45 @@ $(document).ready(function(){
         });
     });
 
-
-});
-
-
-$(window).scroll(function() {
-    $('#why-us').each(function(){
-    var imagePos = $(this).offset().top;
-
-    var topOfWindow = $(window).scrollTop();
-        if (imagePos < topOfWindow+400) {
-            $(this).addClass("bigEntrance");
-        }
-    }, 2000);
-});
-
-$(window).scroll(function() {
-    $('#our-team').each(function(){
-    var imagePos = $(this).offset().top;
-
-    var topOfWindow = $(window).scrollTop();
-        if (imagePos < topOfWindow+400) {
-            $(this).addClass("fadeIn");
-        }
-    }, 2000);
-});
-
+    $(window).scroll(function() {
+        $('#why-us').each(function(){
+        var imagePos = $(this).offset().top;
     
-$.post("/api/Contacts").then(function(data){
-    console.log(data);
-   $(".first-name").val();
-   $(".last-name").val();
-   $(".email").val();
-   $(".message").val(); 
+        var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow+400) {
+                $(this).addClass("bigEntrance");
+            }
+        }, 2000);
+    });
+    
+    $(window).scroll(function() {
+        $('#our-team').each(function(){
+        var imagePos = $(this).offset().top;
+    
+        var topOfWindow = $(window).scrollTop();
+            if (imagePos < topOfWindow+400) {
+                $(this).addClass("fadeIn");
+            }
+        }, 2000);
+    });
+    
+    // $('.contact-form').on('submit', function(event) {
+    //     event.preventDefault();
+    //     $.ajax({
+    //         url: '/contacts',
+    //         method: "POST",
+    //         data: {
+    //             firstname: $(".first-name").val().trim(),
+    //             lastname: $(".last-name").val().trim(),
+    //             email: $(".email").val().trim(),
+    //             message: $(".message").val()
+    //         }
+    //     }).then(function(data){
+    //         console.log(data);
+    //     });
+        
+    // });
+    
 });
+
+

@@ -4,14 +4,18 @@ var db = require('../models');
 
 router.post('/', function(req, res) {
     db.Contact.create({
-        firstname: req.body.first-name,
-        lastname: req.body.last-name,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         email: req.body.email,
         message: req.body.message
     }).then(function(result) {
         if (result) {
             res.status(200);
-            return res.json(result);
+            res.redirect('/')
         }
-    })
-})
+    }).catch(function(error) {
+        res.status(404);
+    });
+});
+
+module.exports = router;
