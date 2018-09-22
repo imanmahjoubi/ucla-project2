@@ -14,13 +14,13 @@ VALUES ('What is your first name?');
 INSERT INTO Questions (text)
 VALUES ('What is your last name?');
 INSERT INTO Questions (text)
-VALUES ('How old are you?');
+VALUES ('How old are you? (numeric value)');
 INSERT INTO Questions (text)
 VALUES ('Gender (m or f)');
 INSERT INTO Questions (text)
-VALUES ('How much do you weigh?');
+VALUES ('How much do you weigh? (in pounds; numeric value)');
 INSERT INTO Questions (text)
-VALUES ('How tall are you? (in inches)');
+VALUES ('How tall are you? (in inches; numeric value)');
 INSERT INTO Questions (text)
 VALUES ('What is your body fat percentage? (decimal value)');
 INSERT INTO Questions (text)
@@ -36,7 +36,7 @@ VALUES ('Do you have digestive problems? (true/false)');
 INSERT INTO Questions (text)
 VALUES ('How many drinks do you have per week? (numeric value)');
 INSERT INTO Questions (text)
-VALUES ('How many hours per day do you work? (numeric value)');
+VALUES ('How many hours per week do you work? (numeric value)');
 INSERT INTO Questions (text)
 VALUES ('Do you have low energy? (true/false)');
 INSERT INTO Questions (text)
