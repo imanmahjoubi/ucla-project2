@@ -1,25 +1,41 @@
-{{#each recommendations.diet}}
-    <h3>{{text}}</h3>
-    {{#each Food}}
-        {{name}} <br />
-        <img class="food-pic" src="{{image}}">
-    {{/each}}
-{{/each}}
+<div class="row">
+<h2 class="top-text">Thank you for taking the quiz.</h2>
+<h2 class="top-text">Here are your Recommendations</h2>
+</div>
+<div class="row">
+    <div class="col l3">
+        {{#each recommendations.diet}}
+            <h3 class="section-heading">{{text}}</h3>
+            {{#each Food}}
+                {{name}} <br>
+                <img class="food-pic" src="{{image}}"><br>
+            {{/each}}
+        {{/each}}
+    </div>
+    <div class="col l3">
+        {{#each recommendations.energy}}
+            <h3 class="section-heading">{{text}}</h3>
+            {{#each Food}}
+                {{name}} <br>
+                <img class="food-pic" src="{{image}}"><br>
+            {{/each}}
+        {{/each}}
+    </div>
+    <div class="col l3">
+        <h3 class="section-heading">Digestion</h3>
+        {{!-- {{#each recommendations.habit}} --}}
+            {{#each recommendations.digestion.Food}}
+                {{name}} <br>
+                <img class="food-pic" src="{{image}}"><br>
+            {{/each}}
+        {{!-- {{/each}} --}}
+    </div>
+    <div class="col l3">
+        <h3 class="section-heading">Antioxidants</h3>
+        {{#each recommendations.antioxidants.Food}}
+            {{name}} <br>
+            <img class="food-pic" src="{{image}}"><br>
+        {{/each}}   
+    </div>
+</div>
 
-
-{{#each recommendations.energy}}
-    <h3>{{text}}</h3>
-    {{#each Food}}
-        {{name}} <br />
-        <img class="food-pic" src="{{image}}">
-    {{/each}}
-{{/each}}
-
-
-{{#each recommendations.habit}}
-    <h3>{{text}}</h3>
-    {{#each Food}}
-        {{name}} <br />
-        <img class="food-pic" src="{{image}}">
-    {{/each}}
-{{/each}}

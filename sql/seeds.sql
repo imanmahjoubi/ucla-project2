@@ -124,17 +124,15 @@ VALUES ('Beets', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ47MG9PS
 INSERT INTO Food (name, image, RecommendationId)
 VALUES ('Miso', 'https://atmedia.imgix.net/92259190c89638bcbb38fcb9eb610fec1c01be08?w=720&h=480&fit=crop', 6);
 INSERT INTO Food (name, image, RecommendationId)
-VALUES ('Chia seeds', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXnFZKHMVApd2MjOszaTDqglWoynKib3Pdptfe-2PN7CfPxtGX', 4);
+VALUES ("Brocoli", 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFoJsPLrlsBDQEfKhZqwfFTr2Ez62IzOZiqv86B05aZARMUayJ', 4);
 INSERT INTO Food (name, image, RecommendationId)
-VALUES ("Brocoli", 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFoJsPLrlsBDQEfKhZqwfFTr2Ez62IzOZiqv86B05aZARMUayJ', 5);
+VALUES ('Ginger', 'https://www.healthline.com/hlcmsresource/images/AN_images/AN26-Ginger-Root-Powder-732x549-thumb.jpg', 5);
 INSERT INTO Food (name, image, RecommendationId)
-VALUES ('Ginger', 'https://www.healthline.com/hlcmsresource/images/AN_images/AN26-Ginger-Root-Powder-732x549-thumb.jpg', 6);
+VALUES ('Kimchi', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPff7N5rtfBYN3hsDFbco6RxLs2dW5pHAohXea0faRtngHL8deTg', 6);
 INSERT INTO Food (name, image, RecommendationId)
-VALUES ('Kimchi', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPff7N5rtfBYN3hsDFbco6RxLs2dW5pHAohXea0faRtngHL8deTg', 4);
+VALUES ('Dark Green Vegetables', 'http://www.grandforksherald.com/sites/default/files/styles/16x9_620/public/fieldimages/12/0116/0320.f.gfh.nutrition.jpg?itok=-GAE2VPO', 4);
 INSERT INTO Food (name, image, RecommendationId)
-VALUES ('Dark Green Vegetables', 'http://www.grandforksherald.com/sites/default/files/styles/16x9_620/public/fieldimages/12/0116/0320.f.gfh.nutrition.jpg?itok=-GAE2VPO', 5);
-INSERT INTO Food (name, image, RecommendationId)
-VALUES ('Salmon', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeP7aAVEcEmGiroP4errZmHYkRH0YWmoUMokecsla9KPxUri6C', 6);
+VALUES ('Salmon', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeP7aAVEcEmGiroP4errZmHYkRH0YWmoUMokecsla9KPxUri6C', 5);
 INSERT INTO Food (name, image, RecommendationId)
 VALUES ('Red Beans', 'https://cdn.diabetesselfmanagement.com/2009/03/recipe_spicy_rbar_440x250.jpg', 7);
 INSERT INTO Food (name, image, RecommendationId)
