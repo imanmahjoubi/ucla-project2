@@ -5,18 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var LocalStrategy = require('passport-local');
 
 
-//api routes
+//routers
 var apiRouter = require('./routes/apiRoutes');
-//for testing purposes
-var formRouter = require('./routes/form');
+var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var contactRouter = require('./routes/contacts');
     
 var db = require('./models');
 var app = express();
@@ -38,13 +36,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-//for api routes
 app.use('/api', apiRouter);
-//for testing form
-app.use('/form', formRouter);
 app.use('/auth', authRouter);
+app.use('/contacts', contactRouter);
 
 // app.get('/auth', function(req, res) {
 //   res.sendFile('auth.html', {root: 'public'});

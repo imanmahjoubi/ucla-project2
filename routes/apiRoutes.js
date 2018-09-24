@@ -182,11 +182,12 @@ router.get('/users/username/:username', function(req, res) {
                             }
                         }
                     }).then(function(recHabit) {
-                      
-                            recommendationsObject.habit = recHabit;
-                            console.log(recommendationsObject);
-                            res.cookie('quizcomplete', true);
-                            res.render('thankyou', { recommendations: recommendationsObject} );
+                        console.log(recHabit[1]);
+                        recommendationsObject.digestion = recHabit[0];
+                        recommendationsObject.antioxidants = recHabit[1]
+                        // console.log(recommendationsObject.digestion);
+                        res.cookie('quizcomplete', true);
+                        res.render('thankyou', { recommendations: recommendationsObject} );
     
                     }).catch(function(err) {
                         
